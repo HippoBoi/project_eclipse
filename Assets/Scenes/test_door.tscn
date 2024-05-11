@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://by7vd51ps85qt"]
+
+[ext_resource type="Script" path="res://test_door.gd" id="1_leqv6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8icls"]
+albedo_color = Color(0.27451, 0.576471, 0.819608, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_r17wu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2qghj"]
+size = Vector3(2.23615, 2.18835, 0.365204)
+
+[node name="testDoor" type="StaticBody3D"]
+script = ExtResource("1_leqv6")
+
+[node name="Anchor" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Anchor"]
+transform = Transform3D(2.15901, 0, 0, 0, -2.34552e-09, -2.13328, 0, 0.0536592, -9.32486e-08, 1.09838, 1.10068, 4.81125e-08)
+material_override = SubResource("StandardMaterial3D_8icls")
+mesh = SubResource("CylinderMesh_r17wu")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09897, 1.13563, 0.00868225)
+shape = SubResource("BoxShape3D_2qghj")

@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://b878in5wq262x"]
+
+[ext_resource type="Script" path="res://beam_door.gd" id="1_q703m"]
+[ext_resource type="Material" uid="uid://bm8h3drxr6fyp" path="res://Assets/Materials/shaderMaterial.tres" id="2_kvljq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yrs7o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_32kmx"]
+next_pass = ExtResource("2_kvljq")
+albedo_color = Color(0.54902, 1, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7b4ke"]
+size = Vector3(1.79892, 1.32962, 0.673706)
+
+[node name="beamDoor" type="StaticBody3D" groups=["Scanneable"]]
+script = ExtResource("1_q703m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.74444, 0, 0, 0, 1.32095, 0, 0, 0, 0.252975, 0, 0, 0)
+mesh = SubResource("BoxMesh_yrs7o")
+surface_material_override/0 = SubResource("StandardMaterial3D_32kmx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0148773, 0.0335541, 0.00286865)
+shape = SubResource("BoxShape3D_7b4ke")

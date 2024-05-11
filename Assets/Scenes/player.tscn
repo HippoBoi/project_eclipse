@@ -1,0 +1,487 @@
+[gd_scene load_steps=27 format=3 uid="uid://b8c6totxokdn6"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_u5qav"]
+[ext_resource type="Shader" path="res://Assets/Shaders/pixelize.gdshader" id="2_oytcu"]
+[ext_resource type="AudioStream" uid="uid://cvpillua6xmrw" path="res://Assets/Sounds/beamShot.ogg" id="3_a8hft"]
+[ext_resource type="AudioStream" uid="uid://bv6jiqjqn63y1" path="res://Assets/Sounds/slash.ogg" id="3_bi8dn"]
+[ext_resource type="PackedScene" uid="uid://bkwu0cqyaufgj" path="res://Assets/Scenes/selectionWheel.tscn" id="3_tpaek"]
+[ext_resource type="Shader" path="res://Assets/Shaders/scanShader.gdshader" id="4_240je"]
+[ext_resource type="FontFile" uid="uid://cjr63v44rd26b" path="res://Assets/Plaza Regular.ttf" id="5_6gl0n"]
+[ext_resource type="ArrayMesh" uid="uid://c0r3kuf0rqj4c" path="res://Assets/Models/Samus_SuperMetroid_N64/Samus_N64.obj" id="5_8ybcl"]
+[ext_resource type="Shader" path="res://Assets/Shaders/underwater.gdshader" id="5_ee5yn"]
+[ext_resource type="Shader" path="res://Assets/Shaders/blurScreen.gdshader" id="5_hmla4"]
+[ext_resource type="PackedScene" uid="uid://dqqpbfregsber" path="res://Assets/Scenes/Weapons/weapon_test.tscn" id="7_y8eq5"]
+[ext_resource type="PackedScene" uid="uid://c37wsdh1fj21j" path="res://Assets/Scenes/Weapons/weapon_knife.tscn" id="8_bcbgu"]
+[ext_resource type="PackedScene" uid="uid://ddwyvddsmqxgs" path="res://Assets/Scenes/slashEffect.tscn" id="14_bg42l"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7n42o"]
+font_size = 12
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vwtyc"]
+shader = ExtResource("2_oytcu")
+shader_parameter/size_x = 0.001
+shader_parameter/size_y = 0.001
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hs6cd"]
+shader = ExtResource("4_240je")
+shader_parameter/intensity = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ksk4"]
+shader = ExtResource("5_ee5yn")
+shader_parameter/wave_speed = 1.5
+shader_parameter/wave_freq = 0.5
+shader_parameter/wave_width = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g4c4o"]
+shader = ExtResource("5_hmla4")
+shader_parameter/amount = 1.25
+
+[sub_resource type="LabelSettings" id="LabelSettings_3s63a"]
+font = ExtResource("5_6gl0n")
+font_size = 32
+font_color = Color(0, 0.752941, 0.647059, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_offset = Vector2(10, 10)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sc8mq"]
+font = ExtResource("5_6gl0n")
+font_size = 20
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_c1um6"]
+font_size = 13
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2v3gb"]
+height = 2.2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xmh4c"]
+height = 1.41613
+
+[sub_resource type="Animation" id="Animation_pu7m6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerModel:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_j1j5f"]
+resource_name = "idleAnim"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerModel:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0), Vector3(0.11027, -3.14159, 0), Vector3(-0.149767, -3.14159, 0), Vector3(0, -3.14159, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v8nwe"]
+_data = {
+"RESET": SubResource("Animation_pu7m6"),
+"idleAnim": SubResource("Animation_j1j5f")
+}
+
+[node name="player" type="CharacterBody3D" groups=["Pausable", "Player"]]
+collision_layer = 524290
+collision_mask = 524291
+floor_block_on_wall = false
+safe_margin = 0.005
+script = ExtResource("1_u5qav")
+shootSound = ExtResource("3_a8hft")
+slashSound = ExtResource("3_bi8dn")
+
+[node name="FirstPersonUI" type="CanvasLayer" parent="."]
+layer = -3
+
+[node name="statusUI" type="Control" parent="FirstPersonUI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 111.0
+offset_bottom = 62.0
+
+[node name="hpLabel" type="Label" parent="FirstPersonUI/statusUI"]
+texture_filter = 1
+layout_mode = 1
+offset_right = 70.0
+offset_bottom = 32.0
+text = "Health: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="FirstPersonUI"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.501
+anchor_right = 0.5
+anchor_bottom = 0.501
+offset_left = 2.0
+offset_top = -2.36002
+offset_right = 8.0
+offset_bottom = 3.63998
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.785398
+color = Color(0.905882, 0.631373, 0.85098, 0.529412)
+
+[node name="debugLabel" type="Label" parent="FirstPersonUI"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 49.0
+offset_bottom = 11.5
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_7n42o")
+
+[node name="underwaterBG" type="ColorRect" parent="FirstPersonUI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.352941, 0.521569, 0.811765, 0.0941176)
+
+[node name="camShaders" type="CanvasLayer" parent="."]
+layer = -2
+
+[node name="pixelShader" type="ColorRect" parent="camShaders"]
+material = SubResource("ShaderMaterial_vwtyc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="camShaders"]
+position = Vector2(320, 180)
+scale = Vector2(3.2, 1.8)
+copy_mode = 2
+
+[node name="scanShader" type="ColorRect" parent="camShaders"]
+material = SubResource("ShaderMaterial_hs6cd")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackBufferCopy2" type="BackBufferCopy" parent="camShaders"]
+position = Vector2(320, 180)
+scale = Vector2(3.2, 1.8)
+copy_mode = 2
+
+[node name="underwaterShader" type="ColorRect" parent="camShaders"]
+visible = false
+material = SubResource("ShaderMaterial_8ksk4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackBufferCopy3" type="BackBufferCopy" parent="camShaders"]
+position = Vector2(320, 180)
+scale = Vector2(3.2, 1.8)
+copy_mode = 2
+
+[node name="blurShader" type="ColorRect" parent="camShaders"]
+visible = false
+material = SubResource("ShaderMaterial_g4c4o")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="scanUI" type="CanvasLayer" parent="."]
+layer = -1
+visible = false
+
+[node name="textUI" type="Control" parent="scanUI"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="textHolderName" type="ColorRect" parent="scanUI/textUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -288.0
+offset_right = 288.0
+offset_bottom = 49.0
+grow_horizontal = 2
+size_flags_vertical = 4
+color = Color(0.611765, 0.203922, 0.254902, 1)
+
+[node name="scanTextName" type="Label" parent="scanUI/textUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -288.0
+offset_top = 8.0
+offset_right = 288.0
+offset_bottom = 34.0
+grow_horizontal = 2
+text = "holaohlaohla
+"
+label_settings = SubResource("LabelSettings_3s63a")
+horizontal_alignment = 1
+
+[node name="upgradeUI" type="Control" parent="scanUI"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="barBG" type="ColorRect" parent="scanUI/upgradeUI"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 128.0
+offset_top = -12.0
+offset_right = -128.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.215686, 0, 0.0823529, 1)
+
+[node name="bar" type="ColorRect" parent="scanUI/upgradeUI/barBG"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 1)
+color = Color(0.447059, 0.12549, 0.215686, 1)
+
+[node name="barPercent" type="Label" parent="scanUI/upgradeUI/barBG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0%
+"
+label_settings = SubResource("LabelSettings_sc8mq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="scanUI"]
+z_as_relative = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -272.0
+offset_right = -1.0
+offset_bottom = 23.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+text = "Scanner mode"
+label_settings = SubResource("LabelSettings_c1um6")
+horizontal_alignment = 2
+
+[node name="overlayScreen" type="CanvasLayer" parent="."]
+
+[node name="itemWheel" parent="overlayScreen" instance=ExtResource("3_tpaek")]
+visible = false
+options = Array[Resource("res://Assets/Scripts/playerWeaponList.gd")]([])
+
+[node name="menuUI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="menuBG" type="ColorRect" parent="menuUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.141176, 0.309804, 0.278431, 0.27451)
+
+[node name="upgradesBG" type="ColorRect" parent="menuUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 448.0
+offset_top = 64.0
+offset_right = -24.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.32549, 0.152941, 0.235294, 0.447059)
+
+[node name="backButton" type="Button" parent="menuUI"]
+anchors_preset = -1
+anchor_left = 0.471094
+anchor_top = 0.913889
+anchor_right = 0.528906
+anchor_bottom = 1.0
+offset_left = -293.5
+offset_top = -121.0
+offset_right = -216.5
+offset_bottom = -121.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back to Menu"
+metadata/_edit_use_anchors_ = true
+
+[node name="continueButton" type="Button" parent="menuUI"]
+anchors_preset = -1
+anchor_left = 0.471094
+anchor_top = 0.913889
+anchor_right = 0.528906
+anchor_bottom = 1.0
+offset_left = -293.5
+offset_top = -177.0
+offset_right = -251.5
+offset_bottom = -177.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Continue"
+metadata/_edit_use_anchors_ = true
+
+[node name="upgradesTitle" type="Label" parent="menuUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 176.0
+offset_top = -148.0
+offset_right = 250.0
+offset_bottom = -125.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Suit Upgrades"
+
+[node name="upgradesList" type="Control" parent="menuUI"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 140.0
+offset_top = -90.0
+offset_right = 180.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="grid" type="GridContainer" parent="menuUI/upgradesList"]
+layout_direction = 2
+layout_mode = 1
+offset_right = 243.0
+offset_bottom = 88.0
+
+[node name="standingCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+shape = SubResource("CapsuleShape3D_2v3gb")
+
+[node name="crouchingCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+shape = SubResource("CapsuleShape3D_xmh4c")
+disabled = true
+
+[node name="playerModel" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.598875, 0, -1.75736e-06, 0, 0.611333, 0, 1.51826e-06, 0, -0.693188, 0.00468222, 0.587698, 0.0843689)
+mesh = ExtResource("5_8ybcl")
+
+[node name="neck" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, 0)
+
+[node name="camOrigin" type="Node3D" parent="neck"]
+
+[node name="head" type="Node3D" parent="neck/camOrigin"]
+
+[node name="MainCamera" type="Camera3D" parent="neck/camOrigin/head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.119663, -0.0501585, -0.0937129)
+cull_mask = 524287
+
+[node name="RayCast3D" type="RayCast3D" parent="neck/camOrigin/head/MainCamera"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.109404, -0.0443943, 0.314449)
+target_position = Vector3(0, -5, 0)
+collision_mask = 5
+
+[node name="weapons" type="Node3D" parent="neck/camOrigin/head/MainCamera"]
+
+[node name="weaponTest" parent="neck/camOrigin/head/MainCamera/weapons" instance=ExtResource("7_y8eq5")]
+transform = Transform3D(0.492708, 0.00112111, 0.0287572, 0, 0.351105, -0.0220855, -0.0318361, 0.0173507, 0.445058, 0.180914, -0.284884, -0.0764373)
+
+[node name="weaponKnife" parent="neck/camOrigin/head/MainCamera/weapons" instance=ExtResource("8_bcbgu")]
+transform = Transform3D(-0.408666, 0.0019237, 0.00882306, -0.00410784, -0.491575, -0.114043, 0.00830588, -0.148468, 0.377709, 0.172511, -0.367619, 0.0489888)
+
+[node name="slashEffect" parent="neck/camOrigin/head/MainCamera" instance=ExtResource("14_bg42l")]
+transform = Transform3D(-1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, -1, -0.119663, -0.373067, -1.41267)
+
+[node name="slashEffect2" parent="neck/camOrigin/head/MainCamera" instance=ExtResource("14_bg42l")]
+transform = Transform3D(0.965926, -0.258819, -8.63605e-08, -0.258819, -0.965926, 2.31402e-08, -8.9407e-08, 0, -1, -0.388451, -0.189585, -1.41267)
+
+[node name="shootPoint" parent="neck/camOrigin" instance=ExtResource("7_y8eq5")]
+transform = Transform3D(0.492708, 0.00112111, 0.0287572, 0, 0.351105, -0.0220855, -0.0318361, 0.0173507, 0.445058, 0.300577, -0.335042, -0.17015)
+visible = false
+
+[node name="rayCasts" type="Node3D" parent="."]
+
+[node name="leftRay" type="RayCast3D" parent="rayCasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2482, 0)
+target_position = Vector3(-0.75, 0, 0)
+
+[node name="rightRay" type="RayCast3D" parent="rayCasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2482, 0)
+target_position = Vector3(0.75, 0, 0)
+
+[node name="crouchRaycast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34706, 0)
+target_position = Vector3(0, 0.8, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v8nwe")
+}
+autoplay = "idleAnim"
+
+[connection signal="button_up" from="menuUI/continueButton" to="." method="_onContinueButton"]

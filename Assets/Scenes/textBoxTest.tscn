@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://mwe88r03ithe"]
+
+[ext_resource type="Texture2D" uid="uid://wsxts3jbylm1" path="res://icon.svg" id="1_lcrki"]
+[ext_resource type="Script" path="res://textBoxTest.gd" id="1_nss45"]
+[ext_resource type="FontFile" uid="uid://cjr63v44rd26b" path="res://Assets/Plaza Regular.ttf" id="2_d1lnb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xkfkx"]
+font = ExtResource("2_d1lnb")
+font_size = 24
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 3
+shadow_color = Color(0.145098, 0.0156863, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[node name="textBoxTest" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_nss45")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+modulate = Color(0.462745, 0.113725, 0, 0.529412)
+layout_mode = 2
+texture = ExtResource("1_lcrki")
+region_rect = Rect2(16, 16, 96, 96)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.658824, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_d1lnb")
+label_settings = SubResource("LabelSettings_xkfkx")
+
+[node name="letterDisplayTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="letterDisplayTimer" to="." method="_on_letter_display_timer_timeout"]

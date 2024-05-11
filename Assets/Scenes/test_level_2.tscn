@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbdxf0d4h47mx"]
+
+[ext_resource type="PackedScene" uid="uid://b8c6totxokdn6" path="res://Assets/Scenes/player.tscn" id="1_26tbe"]
+[ext_resource type="PackedScene" uid="uid://d4fl1kd2gykix" path="res://Assets/Scenes/upgradeTest.tscn" id="2_ju3xn"]
+[ext_resource type="MeshLibrary" uid="uid://wstne4qdv8sj" path="res://Assets/Tilesets/tileset.tres" id="3_metwn"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tky6v"]
+sky_top_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_d1tgm"]
+sky_material = SubResource("ProceduralSkyMaterial_tky6v")
+
+[sub_resource type="Environment" id="Environment_buwce"]
+background_mode = 2
+sky = SubResource("Sky_d1tgm")
+ambient_light_source = 3
+ambient_light_color = Color(0.360784, 0.360784, 0.360784, 1)
+ambient_light_energy = 1.15
+fog_light_color = Color(0.521569, 0.294118, 0.635294, 1)
+fog_light_energy = 0.02
+fog_density = 0.1
+
+[node name="testLevel2" type="Node3D"]
+
+[node name="player" parent="." instance=ExtResource("1_26tbe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.09294)
+
+[node name="upgradeTest" parent="." instance=ExtResource("2_ju3xn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -12)
+item = "Dash"
+line1 = "the epic dash"
+line2 = "allows to dash with SHIFT"
+
+[node name="GridMap" type="GridMap" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh_library = ExtResource("3_metwn")
+cell_size = Vector3(1, 1, 1)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(65535, 65535, 2, 65535, 0, 2, 65535, 1, 2, 1, 1, 2, 0, 1, 2, 2, 1, 1441792, 2, 0, 1441792, 2, 65535, 1, 65535, 65533, 1048576, 65535, 65532, 1048576, 65535, 65531, 1048576, 65535, 65530, 1048576, 65535, 65529, 1048576, 0, 65533, 1441792, 0, 65532, 1441792, 0, 65531, 1441792, 0, 65530, 1441792, 0, 65529, 1441792, 65535, 65528, 1048577, 0, 65528, 1, 1, 0, 2, 0, 0, 2, 0, 65535, 2, 2, 2, 1441793, 65535, 2, 655360, 0, 2, 655360, 1, 2, 655360, 65534, 65534, 1048577, 65535, 65534, 1048579, 1, 65534, 1, 0, 65534, 3, 1, 65535, 3, 65534, 65535, 1048576, 65534, 0, 1048576, 65534, 1, 1048576, 65534, 2, 655361)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 0.645013, 4.70856, 0.920522)
+light_energy = 3.0
+spot_range = 8.0
+spot_angle = 90.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 0.0363922, 4.4523, -10.6978)
+light_energy = 3.0
+spot_range = 12.0
+spot_angle = 90.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_buwce")

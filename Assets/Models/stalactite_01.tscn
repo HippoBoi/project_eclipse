@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6gurk7iyrsqd"]
+
+[ext_resource type="PackedScene" uid="uid://cikiodi3e0dep" path="res://Assets/Models/Stalactites/stalactite_01.glb" id="1_axx7a"]
+[ext_resource type="Script" path="res://stalactite2.gd" id="2_7fqsb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qbhpi"]
+size = Vector3(1, 2.36195, 1)
+
+[node name="Stalactite01" type="RigidBody3D"]
+script = ExtResource("2_7fqsb")
+
+[node name="stalactite_01" parent="." instance=ExtResource("1_axx7a")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17661, 0)
+shape = SubResource("BoxShape3D_qbhpi")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 3, 0)

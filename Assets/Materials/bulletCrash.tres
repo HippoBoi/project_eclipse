@@ -1,0 +1,20 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://go8716on6dl4"]
+
+[sub_resource type="Curve" id="Curve_yum0y"]
+max_value = 3.0
+_data = [Vector2(0, 2.7283), 0.0, 0.0, 0, 0, Vector2(0.608911, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_r6ahx"]
+curve = SubResource("Curve_yum0y")
+
+[resource]
+angle_min = -90.0
+angle_max = 90.0
+direction = Vector3(0, 0, 3)
+initial_velocity_min = 3.0
+initial_velocity_max = 6.0
+gravity = Vector3(0, -9, 0)
+scale_over_velocity_min = 1.0
+scale_over_velocity_max = 10.0
+scale_over_velocity_curve = SubResource("CurveTexture_r6ahx")

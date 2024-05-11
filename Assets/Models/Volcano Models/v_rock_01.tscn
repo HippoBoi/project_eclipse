@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bi8mr2g0af13b"]
+
+[ext_resource type="PackedScene" uid="uid://6m2nb1f6oh5q" path="res://Assets/vRockModels/vRock_01.glb" id="1_yecoc"]
+
+[node name="vRock_01" instance=ExtResource("1_yecoc")]

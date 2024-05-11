@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://dj8h07cq8sss1"]
+
+[ext_resource type="Shader" path="res://Assets/Shaders/waterShader.gdshader" id="1_517h7"]
+[ext_resource type="Texture2D" uid="uid://8g70d7wmo6bq" path="res://Assets/Textures/waterTex2.jpg" id="2_0op00"]
+[ext_resource type="Script" path="res://waterTest.gd" id="2_rur5e"]
+[ext_resource type="Texture2D" uid="uid://ww1lbiotc8rt" path="res://Assets/Textures/waterTex.jpg" id="3_v2rlk"]
+[ext_resource type="Texture2D" uid="uid://b76x20ybrg5um" path="res://Assets/Textures/noiseTexture.png" id="4_qaudh"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_iay40"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fntop"]
+render_priority = 0
+shader = ExtResource("1_517h7")
+shader_parameter/albedo = Color(1, 0.0980392, 0.211765, 1)
+shader_parameter/albedo2 = Color(0.898039, 1, 0.309804, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.5
+shader_parameter/wave_direction = Vector2(0.25, 0.5)
+shader_parameter/wave_direction2 = Vector2(0.25, 0.5)
+shader_parameter/time_scale = 0.1
+shader_parameter/noise_scale = 10.0
+shader_parameter/height_scale = 0.0
+shader_parameter/color_deep = Color(0.0784314, 0.0784314, 0.447059, 1)
+shader_parameter/color_shallow = Color(0.180392, 0.239216, 0.47451, 1)
+shader_parameter/beers_law = 2.0
+shader_parameter/depth_offset = -0.75
+shader_parameter/edge_scale = 0.0
+shader_parameter/near = 1.0
+shader_parameter/far = 100.0
+shader_parameter/edge_color = Color(0.282353, 0.266667, 1, 1)
+shader_parameter/wave = ExtResource("4_qaudh")
+shader_parameter/texture_normal = ExtResource("2_0op00")
+shader_parameter/texture_normal2 = ExtResource("3_v2rlk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8bepv"]
+next_pass = SubResource("ShaderMaterial_fntop")
+cull_mode = 2
+albedo_color = Color(1, 0.180392, 0.396078, 1)
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color(1, 0.196078, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bhpsq"]
+size = Vector3(2.00166, 0.507813, 2.00255)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0bern"]
+size = Vector3(2.00403, 1, 2.00476)
+
+[node name="Lava" type="MeshInstance3D" groups=["Water"]]
+transform = Transform3D(8, 0, 0, 0, 0.127204, 0, 0, 0, 7.68, 0, 0, 0)
+mesh = SubResource("PlaneMesh_iay40")
+surface_material_override/0 = SubResource("StandardMaterial3D_8bepv")
+script = ExtResource("2_rur5e")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000199348, 0.286635, 0.000234156)
+shape = SubResource("BoxShape3D_bhpsq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Water"]]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00189293, 0, 0.00115833)
+shape = SubResource("BoxShape3D_0bern")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvo3fmslxdf28"]
+
+[ext_resource type="PackedScene" uid="uid://ddea3pspqvikm" path="res://Assets/Models/Rock Models/rock_8.glb" id="1_p17yy"]
+
+[node name="rock_8" instance=ExtResource("1_p17yy")]
+
+[node name="StaticBody3D" parent="rock8" index="0"]
+visible = false

@@ -1,0 +1,240 @@
+[gd_scene load_steps=16 format=3 uid="uid://d1flb4d0532vc"]
+
+[ext_resource type="PackedScene" uid="uid://b8c6totxokdn6" path="res://Assets/Scenes/player.tscn" id="3_kfaae"]
+[ext_resource type="PackedScene" uid="uid://dk65fs1c0ftn5" path="res://Assets/Models/Volcano Models/v_rock_floor.tscn" id="3_ply4j"]
+[ext_resource type="PackedScene" uid="uid://cmkgmxx2yky2y" path="res://Assets/Models/Volcano Models/v_rock_02.tscn" id="4_mgrs5"]
+[ext_resource type="PackedScene" uid="uid://dj8h07cq8sss1" path="res://Assets/Scenes/lava.tscn" id="4_qsrtq"]
+[ext_resource type="PackedScene" uid="uid://qw5teecuqtsn" path="res://Assets/Scenes/fireTorch.tscn" id="4_r6gkg"]
+[ext_resource type="PackedScene" uid="uid://bi8mr2g0af13b" path="res://Assets/Models/Volcano Models/v_rock_01.tscn" id="5_u38kw"]
+[ext_resource type="PackedScene" uid="uid://b6gurk7iyrsqd" path="res://Assets/Models/stalactite_01.tscn" id="7_qma37"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_clknp"]
+sky_top_color = Color(0.466667, 0.407843, 0.603922, 1)
+sky_horizon_color = Color(0.467651, 0.71348, 0.644028, 1)
+
+[sub_resource type="Sky" id="Sky_o5e3i"]
+sky_material = SubResource("ProceduralSkyMaterial_clknp")
+
+[sub_resource type="Environment" id="Environment_gg6y8"]
+background_mode = 2
+sky = SubResource("Sky_o5e3i")
+ambient_light_sky_contribution = 0.6
+reflected_light_source = 1
+tonemap_mode = 2
+ssao_radius = 0.5
+ssao_power = 2.04906
+ssao_sharpness = 1.0
+ssil_enabled = true
+ssil_radius = 2.0
+ssil_sharpness = 1.0
+sdfgi_bounce_feedback = 0.81
+sdfgi_min_cell_size = 0.0195313
+sdfgi_cascade0_distance = 1.25
+sdfgi_max_distance = 20.0
+sdfgi_energy = 0.75
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 0.5
+glow_bloom = 0.05
+glow_blend_mode = 0
+glow_hdr_scale = 2.73
+fog_enabled = true
+fog_light_color = Color(0.85098, 0.364706, 0.47451, 1)
+fog_light_energy = 0.2
+fog_sun_scatter = 0.1
+fog_density = 0.002
+fog_sky_affect = 0.2
+fog_height_density = 0.25
+volumetric_fog_density = 0.02
+volumetric_fog_albedo = Color(0.537255, 0.611765, 0.8, 1)
+volumetric_fog_sky_affect = 0.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mhnx8"]
+load_path = "res://.godot/imported/rock_2.png-2e07eb9d7ab7472deea730fc9e455d90.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rm2ud"]
+load_path = "res://.godot/imported/rock_2_n.png-12205e51d0ae86fc20b12eebc6a1ef3f.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g3ed1"]
+albedo_texture = SubResource("CompressedTexture2D_mhnx8")
+metallic_specular = 0.0
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_rm2ud")
+uv1_scale = Vector3(30, 25, 30)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_wtkn6"]
+material = SubResource("StandardMaterial3D_g3ed1")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2de21"]
+
+[node name="volcanoInside" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gg6y8")
+
+[node name="entrancePool" type="Node3D" parent="."]
+
+[node name="Floor9" type="MeshInstance3D" parent="entrancePool"]
+transform = Transform3D(23.7563, 0, 0, 0, 0.238208, 0, 0, 0, 18.3008, 0, -0.096159, 6)
+mesh = SubResource("BoxMesh_wtkn6")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="entrancePool/Floor9"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="entrancePool/Floor9/StaticBody3D"]
+shape = SubResource("BoxShape3D_2de21")
+
+[node name="Floor10" type="MeshInstance3D" parent="entrancePool"]
+transform = Transform3D(23.7563, 0, 0, 0, 0.238208, 0, 0, 0, 18.3008, 0, -0.096159, -24)
+mesh = SubResource("BoxMesh_wtkn6")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="entrancePool/Floor10"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="entrancePool/Floor10/StaticBody3D"]
+shape = SubResource("BoxShape3D_2de21")
+
+[node name="Lava" parent="entrancePool" instance=ExtResource("4_qsrtq")]
+transform = Transform3D(27.36, 0, 0, 0, 0.127204, 0, 0, 0, 46.6944, 3, -0.185046, -9)
+skeleton = NodePath("../..")
+
+[node name="torch" parent="entrancePool" instance=ExtResource("4_r6gkg")]
+transform = Transform3D(1.43914, 0, 0, 0, 1.44713, 0, 0, 0, 1.41405, -7, 0, 0)
+
+[node name="torch5" parent="entrancePool" instance=ExtResource("4_r6gkg")]
+transform = Transform3D(1.43914, 0, 0, 0, 1.44713, 0, 0, 0, 1.41405, -17.074, 0.276245, -4.24215)
+
+[node name="torch2" parent="entrancePool" instance=ExtResource("4_r6gkg")]
+transform = Transform3D(1.43914, 0, 0, 0, 1.44713, 0, 0, 0, 1.41405, 8, 0, 0)
+
+[node name="torch3" parent="entrancePool" instance=ExtResource("4_r6gkg")]
+transform = Transform3D(1.43914, 0, 0, 0, 1.44713, 0, 0, 0, 1.41405, -7, 0, -20.7766)
+
+[node name="torch4" parent="entrancePool" instance=ExtResource("4_r6gkg")]
+transform = Transform3D(1.43914, 0, 0, 0, 1.44713, 0, 0, 0, 1.41405, 8, 0, -20.7766)
+
+[node name="vRock_Floor" parent="entrancePool" instance=ExtResource("3_ply4j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.90579)
+
+[node name="vRock_Floor2" parent="entrancePool" instance=ExtResource("3_ply4j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -5.35574)
+
+[node name="vRock_Floor4" parent="entrancePool" instance=ExtResource("3_ply4j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 3.64426)
+
+[node name="vRock_Floor3" parent="entrancePool" instance=ExtResource("3_ply4j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 0.644259)
+
+[node name="rockWalls" type="Node3D" parent="entrancePool"]
+
+[node name="vRock_02" parent="entrancePool/rockWalls" instance=ExtResource("4_mgrs5")]
+transform = Transform3D(0.36014, 0, -0.988744, 0, 1.17957, 0, 0.36014, 0, 0.988744, -10, -1, -2)
+
+[node name="vRock_03" parent="entrancePool/rockWalls" instance=ExtResource("4_mgrs5")]
+transform = Transform3D(0.866025, 0, 0.981474, 0, 1.85361, 0, -0.5, 0, 1.69996, -10.89, -0.0932357, 5.19047)
+
+[node name="vRock_04" parent="entrancePool/rockWalls" instance=ExtResource("4_mgrs5")]
+transform = Transform3D(1, 0, 0, 0, 2.02212, 0, 0, 0, 1.7845, -10, -0.8454, 9)
+
+[node name="vRock_10" parent="entrancePool/rockWalls" instance=ExtResource("4_mgrs5")]
+transform = Transform3D(0.866025, 0, 0.981474, 0, 1.85361, 0, -0.5, 0, 1.69996, 11.11, -0.0932357, 2.28599)
+
+[node name="vRock_11" parent="entrancePool/rockWalls" instance=ExtResource("4_mgrs5")]
+transform = Transform3D(1, 0, 0, 0, 2.02212, 0, 0, 0, 1.7845, 12, -0.8454, 6.43387)
+
+[node name="vRock_05" parent="entrancePool/rockWalls" instance=ExtResource("4_mgrs5")]
+transform = Transform3D(1, 0, 0, 0, 2.35914, 0, 0, 0, 2.1414, -10, -0.705273, 14.5083)
+
+[node name="vRock_06" parent="entrancePool/rockWalls" instance=ExtResource("4_mgrs5")]
+transform = Transform3D(0.995929, 0, 0.660436, 0, 1.17957, 0, -0.575, 0, 1.14391, -6, -1, 13.8028)
+
+[node name="vRock_07" parent="entrancePool/rockWalls" instance=ExtResource("4_mgrs5")]
+transform = Transform3D(0.896336, 0, 0.85231, 0, 0.764362, 0, -0.5175, 0, 1.47624, -8.32448, -1, 9.77665)
+
+[node name="vRock_08" parent="entrancePool/rockWalls" instance=ExtResource("4_mgrs5")]
+transform = Transform3D(-0.515196, 0, 1.32317, 0, 1.29753, 0, -0.644014, 0, -1.05851, 10.0121, -1, 10.1461)
+
+[node name="vRock_09" parent="entrancePool/rockWalls" instance=ExtResource("4_mgrs5")]
+transform = Transform3D(-0.731855, 0, 1.20535, 0, 0.764361, 0, -0.731855, 0, -1.20535, 6.1941, -1, 13.4334)
+
+[node name="vRock_01" parent="entrancePool" instance=ExtResource("5_u38kw")]
+transform = Transform3D(0.81, 0, 0, 0, 1, 0, 0, 0, 1.24416, 0, -0.0362518, 19.8339)
+
+[node name="mapBounds" type="Node3D" parent="."]
+
+[node name="vRock_01" parent="mapBounds" instance=ExtResource("5_u38kw")]
+transform = Transform3D(9.46283e-08, 1, 0, -3.1752, 2.98023e-08, 0, 0, 0, 1.7, -24.0036, 7.35595, 0)
+
+[node name="vRock_02" parent="mapBounds" instance=ExtResource("5_u38kw")]
+transform = Transform3D(9.46283e-08, 1, 0, -3.1752, 2.98023e-08, 0, 0, 0, 1.7, -24.0036, 7.35595, 12)
+
+[node name="vRock_03" parent="mapBounds" instance=ExtResource("5_u38kw")]
+transform = Transform3D(9.46283e-08, 1, 0, -3.1752, 2.98023e-08, 0, 0, 0, 1.7, -24.0036, 7.35595, 24)
+
+[node name="vRock_06" parent="mapBounds" instance=ExtResource("5_u38kw")]
+transform = Transform3D(9.46283e-08, 1, 0, -3.1752, 2.98023e-08, 0, 0, 0, 1.7, -24.0036, 7.35595, -36)
+
+[node name="vRock_09" parent="mapBounds" instance=ExtResource("5_u38kw")]
+transform = Transform3D(9.46283e-08, 1, 0, -3.1752, 2.98023e-08, 0, 0, 0, 1.7, -24.0036, 7.35595, -48)
+
+[node name="vRock_07" parent="mapBounds" instance=ExtResource("5_u38kw")]
+transform = Transform3D(9.46283e-08, 1, 0, -3.1752, 2.98023e-08, 0, 0, 0, 1.7, -24.0036, 7.35595, -24)
+
+[node name="vRock_08" parent="mapBounds" instance=ExtResource("5_u38kw")]
+transform = Transform3D(9.46283e-08, 1, 0, -3.1752, 2.98023e-08, 0, 0, 0, 1.7, -24.0036, 7.35595, -12)
+
+[node name="vRock_13" parent="mapBounds" instance=ExtResource("5_u38kw")]
+transform = Transform3D(9.46283e-08, 1, 0, -3.1752, 2.98023e-08, 0, 0, 0, 1.7, 27.9964, 7.35595, 0)
+
+[node name="vRock_14" parent="mapBounds" instance=ExtResource("5_u38kw")]
+transform = Transform3D(9.46283e-08, 1, 0, -3.1752, 2.98023e-08, 0, 0, 0, 1.7, 27.9964, 7.35595, 12)
+
+[node name="vRock_15" parent="mapBounds" instance=ExtResource("5_u38kw")]
+transform = Transform3D(9.46283e-08, 1, 0, -3.1752, 2.98023e-08, 0, 0, 0, 1.7, 27.9964, 7.35595, 24)
+
+[node name="vRock_16" parent="mapBounds" instance=ExtResource("5_u38kw")]
+transform = Transform3D(9.46283e-08, 1, 0, -3.1752, 2.98023e-08, 0, 0, 0, 1.7, 27.9964, 7.35595, -36)
+
+[node name="vRock_17" parent="mapBounds" instance=ExtResource("5_u38kw")]
+transform = Transform3D(9.46283e-08, 1, 0, -3.1752, 2.98023e-08, 0, 0, 0, 1.7, 27.9964, 7.35595, -48)
+
+[node name="vRock_18" parent="mapBounds" instance=ExtResource("5_u38kw")]
+transform = Transform3D(9.46283e-08, 1, 0, -3.1752, 2.98023e-08, 0, 0, 0, 1.7, 27.9964, 7.35595, -24)
+
+[node name="vRock_19" parent="mapBounds" instance=ExtResource("5_u38kw")]
+transform = Transform3D(9.46283e-08, 1, 0, -3.1752, 2.98023e-08, 0, 0, 0, 1.7, 27.9964, 7.35595, -12)
+
+[node name="vRock_04" parent="mapBounds" instance=ExtResource("5_u38kw")]
+transform = Transform3D(8.19505e-08, 0.5, 1.47224, -3.1752, 2.58096e-08, 2.5332e-08, -4.73142e-08, -0.866025, 0.85, -18.7814, 7.35595, 33.0772)
+
+[node name="vRock_05" parent="mapBounds" instance=ExtResource("5_u38kw")]
+transform = Transform3D(8.19505e-08, 2.98023e-08, 1.7, -3.1752, 1.49012e-08, 4.38763e-08, -4.73142e-08, -1, -1.19209e-07, -8.58138, 7.35595, 36.0772)
+
+[node name="vRock_10" parent="mapBounds" instance=ExtResource("5_u38kw")]
+transform = Transform3D(8.19505e-08, 2.98023e-08, 1.7, -3.1752, 1.49012e-08, 4.38763e-08, -4.73142e-08, -1, -1.19209e-07, 3.41862, 7.35595, 36.0772)
+
+[node name="vRock_11" parent="mapBounds" instance=ExtResource("5_u38kw")]
+transform = Transform3D(8.19505e-08, 2.98023e-08, 1.7, -3.1752, 1.49012e-08, 4.38763e-08, -4.73142e-08, -1, -1.19209e-07, 15.4186, 7.35595, 36.0772)
+
+[node name="vRock_12" parent="mapBounds" instance=ExtResource("5_u38kw")]
+transform = Transform3D(2.44916e-08, -0.707107, 1.20208, -3.1752, 1.49012e-08, 4.38763e-08, -9.14039e-08, -0.707107, -1.20208, 24.4994, 7.35595, 32.7538)
+
+[node name="player" parent="." instance=ExtResource("3_kfaae")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0973248, 0, 15.7359)
+
+[node name="Stalactite01" parent="." node_paths=PackedStringArray("waterInstance") instance=ExtResource("7_qma37")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.9407e-08, 0, -8.9407e-08, -1, 0, 11, 7.15256e-07)
+waterInstance = NodePath("../entrancePool/Lava")
+
+[node name="Stalactite02" parent="." node_paths=PackedStringArray("waterInstance") instance=ExtResource("7_qma37")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.9407e-08, 0, -8.9407e-08, -1, 5, 7, -5)
+waterInstance = NodePath("../entrancePool/Lava")
+
+[node name="Stalactite03" parent="." node_paths=PackedStringArray("waterInstance") instance=ExtResource("7_qma37")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.9407e-08, 0, -8.9407e-08, -1, 11.2914, 7, -5)
+waterInstance = NodePath("../entrancePool/Lava")
+
+[node name="Stalactite04" parent="." node_paths=PackedStringArray("waterInstance") instance=ExtResource("7_qma37")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.9407e-08, 0, -8.9407e-08, -1, -7.10322, 7, -10.675)
+waterInstance = NodePath("../entrancePool/Lava")

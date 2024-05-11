@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://chv1vjcns6tb3"]
+
+[ext_resource type="Texture2D" uid="uid://diob51g53cx6a" path="res://Assets/Textures/rock_2.png" id="1_00u0g"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xtcmh"]
+load_path = "res://.godot/imported/rock_2_n.png-12205e51d0ae86fc20b12eebc6a1ef3f.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l2v36"]
+albedo_texture = ExtResource("1_00u0g")
+metallic_specular = 0.0
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_xtcmh")
+uv1_scale = Vector3(60, 50, 60)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_63kd1"]
+material = SubResource("StandardMaterial3D_l2v36")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2de21"]
+
+[node name="Floor9" type="MeshInstance3D"]
+transform = Transform3D(15.4262, 0, 0, 0, 0.0941169, 0, 0, 0, 23.4626, 0, 0, 0)
+mesh = SubResource("BoxMesh_63kd1")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_2de21")

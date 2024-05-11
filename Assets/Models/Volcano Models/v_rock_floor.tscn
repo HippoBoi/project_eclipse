@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk65fs1c0ftn5"]
+
+[ext_resource type="PackedScene" uid="uid://6m2nb1f6oh5q" path="res://Assets/vRockModels/vRock_Floor.glb" id="1_4mcex"]
+
+[node name="vRock_Floor" instance=ExtResource("1_4mcex")]

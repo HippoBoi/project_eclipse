@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://dciv1hwlwx0cw"]
+
+[ext_resource type="Material" uid="uid://ber33qdm2mc2u" path="res://Assets/Materials/defaultWaterShader.tres" id="1_kmpkd"]
+[ext_resource type="Script" path="res://waterTest.gd" id="1_y5bkp"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_iay40"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xwp7d"]
+next_pass = ExtResource("1_kmpkd")
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0, 0.384314, 1, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bhpsq"]
+size = Vector3(2.00166, 0.507813, 2.00255)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0bern"]
+size = Vector3(2.00403, 1, 2.00476)
+
+[node name="Water" type="MeshInstance3D" groups=["Water"]]
+transform = Transform3D(8, 0, 0, 0, 0.127204, 0, 0, 0, 7.68, 0, 0, 0)
+mesh = SubResource("PlaneMesh_iay40")
+surface_material_override/0 = SubResource("StandardMaterial3D_xwp7d")
+script = ExtResource("1_y5bkp")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000199348, 0.286635, 0.000234156)
+shape = SubResource("BoxShape3D_bhpsq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Water"]]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00189293, 0, 0.00115833)
+shape = SubResource("BoxShape3D_0bern")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

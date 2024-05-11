@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkwu0cqyaufgj"]
+
+[ext_resource type="Script" path="res://SelectionWheel.gd" id="1_de8c7"]
+[ext_resource type="Texture2D" uid="uid://dmwivw72k6g6f" path="res://Assets/Sprites/1.png" id="2_ofwo1"]
+[ext_resource type="Script" path="res://Assets/Scripts/playerWeaponList.gd" id="3_jjv68"]
+[ext_resource type="Texture2D" uid="uid://cpqqhv6enrvl1" path="res://Assets/Sprites/3.png" id="4_t852u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcaew"]
+atlas = ExtResource("2_ofwo1")
+region = Rect2(16, 48, 320, 128)
+script = ExtResource("3_jjv68")
+name = "default"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ef3gn"]
+atlas = ExtResource("4_t852u")
+region = Rect2(48, 32, 272, 160)
+script = ExtResource("3_jjv68")
+name = "gravity"
+
+[node name="SelectionWheel" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_de8c7")
+bgColor = Color(0.0117647, 0.0588235, 0.0627451, 1)
+lineColor = Color(0.137255, 0.333333, 0.321569, 1)
+innerRadius = 42
+outerRadius = 160
+options = Array[ExtResource("3_jjv68")]([SubResource("AtlasTexture_xcaew"), SubResource("AtlasTexture_ef3gn")])

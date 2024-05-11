@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://cdpmid63nvs2r"]
+
+[ext_resource type="Script" path="res://enemyTest.gd" id="1_fcrv8"]
+[ext_resource type="PackedScene" uid="uid://c0hflwf0fyk6a" path="res://Assets/Scenes/health_points.tscn" id="2_4vx24"]
+[ext_resource type="Texture2D" uid="uid://b1mkwa6wys0n" path="res://Assets/Textures/rock_2_n.png" id="4_4mr2j"]
+[ext_resource type="PackedScene" uid="uid://blovi4qel8qwj" path="res://Assets/Scenes/NPCs/cralerModel.tscn" id="4_wny2b"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lm0xn"]
+size = Vector3(2.35474, 1.09769, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vtq2x"]
+resource_local_to_scene = true
+albedo_color = Color(0.713726, 0.4, 0.219608, 1)
+normal_enabled = true
+normal_texture = ExtResource("4_4mr2j")
+uv1_scale = Vector3(10, 10, 10)
+uv2_scale = Vector3(20, 20, 20)
+
+[node name="craler" type="CharacterBody3D" groups=["Pausable", "Scanneable"]]
+collision_layer = 5
+collision_mask = 5
+platform_wall_layers = 5
+script = ExtResource("1_fcrv8")
+maxInvisFrames = 0.1
+
+[node name="HealthPoints" parent="." instance=ExtResource("2_4vx24")]
+maxHP = 4.0
+HP = 4.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0740967, -0.141525, 0)
+shape = SubResource("BoxShape3D_lm0xn")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -3)
+
+[node name="cralerModel" parent="." instance=ExtResource("4_wny2b")]
+transform = Transform3D(-1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, -1, 0, -0.517259, 0)
+
+[node name="body" parent="cralerModel" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_vtq2x")
+
+[node name="teethLeg_003" parent="cralerModel" index="4"]
+transform = Transform3D(0.019643, 0.0916264, 0.0113612, -0.028876, -0.00493607, 0.0897336, 0.0876963, -0.0221486, 0.0270021, -0.947141, 0.23806, 0.150729)
+
+[node name="teethLeg_005" parent="cralerModel" index="6"]
+transform = Transform3D(-0.0192166, 0.0765194, -0.0518249, -0.0227582, 0.0473852, 0.0784029, 0.0895717, 0.028456, 0.00880203, -0.990832, 0.266666, -0.173276)
+
+[node name="UI" type="Node3D" parent="."]
+
+[node name="UIControl" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 64.0
+offset_bottom = 8.0
+
+[node name="hpBG" type="ColorRect" parent="UI/UIControl"]
+z_index = -1
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 8.0
+size_flags_horizontal = 0
+color = Color(0.756863, 0.345098, 0.552941, 0.45098)
+
+[node name="hpBar" type="ColorRect" parent="UI/UIControl"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 8.0
+size_flags_horizontal = 0
+color = Color(0.396078, 0.717647, 0.568627, 1)
+
+[connection signal="damage" from="." to="HealthPoints" method="_on_enemy_test_damage"]
+
+[editable path="cralerModel"]
