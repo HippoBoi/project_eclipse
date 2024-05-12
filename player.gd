@@ -795,7 +795,6 @@ func upgradesInventory():
 func pauseGame(pause):
 	upgradesInventory();
 	
-	print("pausing: " + str(pause));
 	paused = pause;
 	menuUI.visible = pause;
 	if (pause):

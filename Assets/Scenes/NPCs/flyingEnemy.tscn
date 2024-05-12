@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://bwqddeqtjqc0s"]
+
+[ext_resource type="Script" path="res://Assets/Scenes/NPCs/flyingEnemy.gd" id="1_0jo4k"]
+[ext_resource type="PackedScene" uid="uid://c0hflwf0fyk6a" path="res://Assets/Scenes/health_points.tscn" id="2_364oc"]
+[ext_resource type="Shader" path="res://Assets/Shaders/outline.gdshader" id="3_tbl2t"]
+[ext_resource type="PackedScene" uid="uid://bumsi33nwakeo" path="res://Assets/Scenes/NPCs/enemyUI.tscn" id="4_xxxnq"]
+
+[sub_resource type="GDScript" id="GDScript_atfo8"]
+script/source = "extends Node3D
+
+@onready var parent = get_parent();
+
+@export var maxHP: float = 1.0;
+@export var HP: float = 1.0;
+
+func damage(dmg):
+	HP -= dmg;
+	if (HP <= 0):
+		dead();
+
+func dead():
+	if (parent):
+		parent.queue_free();
+
+func _on_flying_enemy_damage(dmg):
+	damage(dmg);
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lm0xn"]
+size = Vector3(2.35474, 1.09769, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_j1ka0"]
+radius = 0.75
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n1kvs"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_tbl2t")
+shader_parameter/border_width = 0.0
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/pattern = false
+shader_parameter/line_number = 1.0
+shader_parameter/line_sharpness = 1.0
+shader_parameter/pulse = false
+shader_parameter/pulse_speed = 5.0
+shader_parameter/line_movement = false
+shader_parameter/line_movement_speed = 6.0
+shader_parameter/wave = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_asevg"]
+next_pass = SubResource("ShaderMaterial_n1kvs")
+
+[node name="flyingEnemy" type="CharacterBody3D" groups=["Pausable", "Scanneable"]]
+collision_layer = 5
+collision_mask = 5
+platform_wall_layers = 5
+script = ExtResource("1_0jo4k")
+
+[node name="HealthPoints" parent="." instance=ExtResource("2_364oc")]
+script = SubResource("GDScript_atfo8")
+maxHP = 8.0
+HP = 8.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0740967, -0.141525, 0)
+shape = SubResource("BoxShape3D_lm0xn")
+
+[node name="enemyModel" type="MeshInstance3D" parent="." groups=["Pausable", "Scanneable"]]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -0.102969, 0)
+mesh = SubResource("CapsuleMesh_j1ka0")
+surface_material_override/0 = SubResource("StandardMaterial3D_asevg")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -3)
+
+[node name="UI" parent="." instance=ExtResource("4_xxxnq")]
+
+[connection signal="damage" from="." to="HealthPoints" method="_on_flying_enemy_damage"]

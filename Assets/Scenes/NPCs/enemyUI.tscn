@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bumsi33nwakeo"]
+
+[node name="UI" type="Node3D"]
+
+[node name="UIControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 64.0
+offset_bottom = 8.0
+
+[node name="hpBG" type="ColorRect" parent="UIControl"]
+z_index = -1
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 8.0
+size_flags_horizontal = 0
+color = Color(0.756863, 0.345098, 0.552941, 0.45098)
+
+[node name="hpBar" type="ColorRect" parent="UIControl"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 8.0
+size_flags_horizontal = 0
+color = Color(0.396078, 0.717647, 0.568627, 1)

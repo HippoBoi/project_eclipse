@@ -120,6 +120,7 @@ func getShader():
 	material = $cralerModel.get_node("body").get_surface_override_material(0);
 	shader = material.get_next_pass();
 	if (material == null or shader == null):
+		print("couldn't find material or shader");
 		return false;
 	return true;
 
