@@ -23,9 +23,9 @@ var paused = false;
 
 # numbers
 var invisFrames = 0;
-var speed = 2.0 # Velocidad de oscilación
-var amplitude = 1.0 # Amplitud de la oscilación
-var direction = Vector3(0, 1, 0) # Dirección de la oscilación
+@export var speed = 0.1;
+@export var amplitude = 0.5;
+var flyTimer = 0;
 
 # undefined vars
 var scanText;
@@ -56,6 +56,18 @@ func _process(delta):
 		uiControl.set_global_position(barPos - barOffset);
 	else:
 		uiControl.hide();
+	
+func _physics_process(delta):
+	if (paused):
+		return;
+	
+	velocity.y += speed;
+	flyTimer -= delta;
+	if (flyTimer <= 0):
+		velocity.y = 0;
+		flyTimer = amplitude
+		speed *= -1;
+	move_and_slide();
 
 func onHit(dmg):
 	if (invisFrames <= 0):
