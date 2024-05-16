@@ -146,9 +146,11 @@ var doubleTapTime = 0;
 var lastKeyPressed = 0;
 var lastDoubleTap = "";
 
+# player related physics
 var direction = Vector3.ZERO;
 var lerpSpeed = 14.0;
 var crouchSpeed = 10.0;
+var outOfWaterTimer = 0.0;
 
 # camera and scanner
 var cameraDebounce = false;
@@ -416,15 +418,17 @@ func _physics_process(delta):
 	# underwater simulation
 	if (curWaterSource != null):
 		var depth = waterHeight - global_position.y;
-		if (depth > 2.3):
+		if (depth > 2.3 or isCrouching):
 			underwaterShader.visible = true;
 			underwaterBG.visible = true;
+			outOfWaterTimer = 0.5;
 		if (depth > 1.55):
 			underWaterPhysics(true);
 			return;
 		
-		underwaterShader.visible = false;
-		underwaterBG.visible = false;
+		if (isCrouching == false or outOfWaterTimer <= 0):
+			underwaterShader.visible = false;
+			underwaterBG.visible = false;
 		underWaterPhysics(false);
 
 func updateUI():
@@ -435,6 +439,9 @@ func handleTimers(delta = 0):
 		return;
 	
 	doubleTapTime -= delta;
+	
+	if (outOfWaterTimer > 0):
+		outOfWaterTimer -= delta;
 	
 	if (comboTimer > 0):
 		comboTimer -= delta;
