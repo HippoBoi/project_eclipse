@@ -3,6 +3,7 @@ extends CharacterBody3D
 const speed = 2.0;
 const acc = 10.0;
 const minSpeed = 0.05;
+const maxUIDistance = 30;
 const defMaterial = preload("res://Assets/Materials/cralerModel.tres");
 const newMaterial = preload("res://Assets/Materials/new_standard_material_3d.tres");
 
@@ -61,10 +62,11 @@ func _process(delta):
 	if (invisFrames <= 0):
 		$cralerModel.get_node("body").set_surface_override_material(0, defMaterial);
 	
-	if (cam.is_position_in_frustum(global_position) and scanMode == true):
+	if (cam.is_position_in_frustum(global_position) and scanMode == true and playerDistance < maxUIDistance):
 		uiControl.show();
 		var barPos = cam.unproject_position(global_position);
 		uiControl.set_global_position(barPos - barOffset);
+		uiControl.modulate.a = min(0.9, (maxUIDistance / playerDistance * 2) / (maxUIDistance));
 	else:
 		uiControl.hide();
 
