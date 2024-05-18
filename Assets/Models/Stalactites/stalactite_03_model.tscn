@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3hxiteblmbow"]
+
+[ext_resource type="PackedScene" uid="uid://wmvuo836bdmd" path="res://Assets/Models/Stalactites/stalactite_03.glb" id="1_1k4ht"]
+
+[node name="stalactite_03" instance=ExtResource("1_1k4ht")]
+
+[node name="stalactite_003" parent="." index="0"]
+surface_material_override/0 = null

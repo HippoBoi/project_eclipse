@@ -418,11 +418,11 @@ func _physics_process(delta):
 	# underwater simulation
 	if (curWaterSource != null):
 		var depth = waterHeight - global_position.y;
-		if (depth > 2.3 or isCrouching):
+		if (depth > 2.3 or (isCrouching and outOfWaterTimer > 0)):
 			underwaterShader.visible = true;
 			underwaterBG.visible = true;
-			outOfWaterTimer = 0.5;
 		if (depth > 1.55):
+			outOfWaterTimer = 0.25;
 			underWaterPhysics(true);
 			return;
 		

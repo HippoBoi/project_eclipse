@@ -7,6 +7,8 @@ extends RigidBody3D
 @export var waterDrag = 0.05;
 @export var waterAngularDrag = 0.05;
 @export var waterInstance: MeshInstance3D;
+@export var heightOffset = 1.1;
+@export var maxDepth = -1.5;
 
 var waterParticles = preload("res://Assets/Scenes/waterSplash.tscn");
 
@@ -45,13 +47,13 @@ func _physics_process(_delta):
 	if (waterInstance == null):
 		return;
 	
-	var depth = waterHeight - global_position.y;
+	var depth = (waterHeight - global_position.y) + heightOffset;
 	isSubmerged = false;
 	if (depth > 0):
 		isSubmerged = true;
 		apply_central_force(Vector3.UP * floatForce * gravity * depth);
 	
-	if (depth > 1.7 and once == false):
+	if (depth > maxDepth and once == false):
 		once = true;
 		var splash = Global.instantiate_node(waterParticles, global_position, self);
 		splash.emitting = true;
