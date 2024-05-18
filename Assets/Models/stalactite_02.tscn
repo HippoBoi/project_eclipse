@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://m23kvsmo6jva"]
+[gd_scene load_steps=7 format=3 uid="uid://m23kvsmo6jva"]
 
 [ext_resource type="Script" path="res://stalactite2.gd" id="1_n1du0"]
 [ext_resource type="PackedScene" uid="uid://b2sw80kge8wh1" path="res://Assets/Models/Stalactites/stalactite_04.glb" id="2_daobq"]
-[ext_resource type="Script" path="res://Assets/Models/Stalactites/override_shader.gd" id="3_hnsvf"]
+[ext_resource type="Texture2D" uid="uid://c0n02wo35cvsm" path="res://Assets/Models/Stalactites/stalactite_04_rock.png" id="3_7dpi1"]
+[ext_resource type="Material" uid="uid://brdh2jqu8fhxn" path="res://Assets/Materials/outlinePass.tres" id="4_xgb1x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k7nul"]
+next_pass = ExtResource("4_xgb1x")
+albedo_texture = ExtResource("3_7dpi1")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qbhpi"]
 size = Vector3(2.28494, 4.38108, 2.28641)
@@ -11,7 +16,9 @@ size = Vector3(2.28494, 4.38108, 2.28641)
 script = ExtResource("1_n1du0")
 
 [node name="stalactite_04" parent="." instance=ExtResource("2_daobq")]
-script = ExtResource("3_hnsvf")
+
+[node name="rock5_001" parent="stalactite_04" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_k7nul")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0103015, 2.18617, 0.0196667)
@@ -21,3 +28,5 @@ shape = SubResource("BoxShape3D_qbhpi")
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00111437, -2.38419e-07, 0.0896819)
 target_position = Vector3(0, 6, 0)
+
+[editable path="stalactite_04"]

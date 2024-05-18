@@ -18,8 +18,8 @@ var timesHit = 0;
 var isSubmerged = false;
 var once = false;
 
-signal onSight;
-signal Scanner;
+var material;
+var shader;
 
 var descText: Array[String] = [
 	"Rock formation usually found hanging down in caves.",
@@ -78,8 +78,34 @@ func onHit(dmg):
 	tween.tween_property(self, "position", Vector3(rng.randf_range(-0.25, 0.25), rng.randf_range(-0.25, 0.25), rng.randf_range(-0.25, 0.25)), 0.01).as_relative();
 	tween.tween_property(self, "position", Vector3(ogPosX, ogPosY, ogPosZ), 0.1);
 	
+func getShader():
+	material = get_node("stalactite_04").get_node("rock5_001").get_surface_override_material(0);
+	shader = material.get_next_pass();
+	if (material == null or shader == null):
+		print("couldn't find material or shader");
+		return false;
+	return true;
+
 func onPlayerFOV(inView):
-	onSight.emit(inView);
+	if (!getShader()):
+		return;
+	
+	if (inView == true):
+		shader.set("shader_parameter/border_width", 0.1);
+		shader.set("shader_parameter/line_sharpness", 10);
+		shader.set("shader_parameter/wave", false);
+	elif (inView == false):
+		shader.set("shader_parameter/border_width", 0.06);
+		shader.set("shader_parameter/line_sharpness", 1);
+		shader.set("shader_parameter/wave", true);
 
 func onScanner(enable):
-	Scanner.emit(enable);
+	if (!getShader()):
+		return;
+	
+	if (enable == true):
+		shader.set("shader_parameter/border_width", 0.06);
+	else:
+		shader.set("shader_parameter/border_width", 0.0);
+		shader.set("shader_parameter/line_sharpness", 1);
+		shader.set("shader_parameter/wave", true);
