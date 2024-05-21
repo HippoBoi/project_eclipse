@@ -94,7 +94,7 @@ var normalJump = 9;
 var underWaterJump = 7.5;
 
 var jumpStrenght = normalJump;
-var maxJumps = 2;
+var maxJumps = 1;
 var curJumps = 0;
 
 var dashTimer = 0.0;
@@ -158,6 +158,7 @@ var scanMode = false;
 var isScanning = false;
 var lockScanMode = false;
 var firstPerson = true;
+var debug = false;
 
 const crouchingCamPos = -1.0;
 const headBopSpeed = 10.0;
@@ -177,14 +178,8 @@ func _ready():
 	pModel.hide();
 	
 	# setup vars
-	var defaultWeapon = PlayerWeaponList.new();
-	defaultWeapon.name = "melee";
-	defaultWeapon.atlas = load("res://Assets/Sprites/2.png");
-	defaultWeapon.region = Rect2(0, 0, 368, 224);
-	playerUpgrades.addWeapon(defaultWeapon);
+	defaultUpgrades();
 	itemWheel.options = playerUpgrades.weapons;
-	
-	playerUpgrades.upgrades.insert(len(playerUpgrades.upgrades), "Dash");
 	
 	updateWeapon(0);
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
@@ -203,6 +198,17 @@ func saveGame():
 	playerUpgrades.weaponPos = weaponPos;
 	ResourceSaver.save(playerUpgrades, saveFilePath);
 	print("game saved!");
+
+func defaultUpgrades():
+	var defaultWeapon = PlayerWeaponList.new();
+	defaultWeapon.name = "melee";
+	defaultWeapon.atlas = load("res://Assets/Sprites/2.png");
+	defaultWeapon.region = Rect2(0, 0, 368, 224);
+	playerUpgrades.addWeapon(defaultWeapon);
+	
+	if (debug):
+		playerUpgrades.upgrades.insert(len(playerUpgrades.upgrades), "Dash");
+		playerUpgrades.upgrades.insert(len(playerUpgrades.upgrades), "DJump");
 
 func _input(event):
 	if (paused):
@@ -394,6 +400,10 @@ func _physics_process(delta):
 		curJumps = 0;
 	
 	if (Input.is_action_just_pressed("ui_accept")):
+		maxJumps = 1;
+		if (playerUpgrades.upgrades.find("DJump") != -1):
+			maxJumps = 2;
+		
 		if (curJumps < maxJumps):
 			velocity.y = jumpStrenght;
 			curJumps += 1;
@@ -499,7 +509,7 @@ func updateWeapon(pos = -1):
 			weaponModel = $neck/camOrigin/head/MainCamera/weapons/weaponTest/MeshInstance3D;
 			curBullet = cyanBullet;
 			weaponDamage = 1;
-			attackDelay = 0.24;
+			attackDelay = 0.2;
 			maxShotsBeforeCharge = 2;
 			meleeWeapon = false;
 		"melee":

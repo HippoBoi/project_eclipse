@@ -795,7 +795,7 @@ transform = Transform3D(0.5225, 0, 0, 0, 11.7672, -0.807155, 0, 4.33952, 2.18871
 transform = Transform3D(0.5225, 0, 0, 0, 11.7305, -0.742882, 0, 4.43774, 1.9637, -3.7676, 3.91393, -62.0065)
 
 [node name="pavement12" parent="greatCave/cavePivot" instance=ExtResource("10_xa5bo")]
-transform = Transform3D(0.5225, 0, 0, 0, 11.7305, -0.825155, 0, 4.43774, 2.18117, -3.7676, 5.71426, -67.8508)
+transform = Transform3D(0.5225, 0, 0, 0, 19.9633, -0.825155, 0, 7.55228, 2.18117, -3.7676, 5.38634, -67.9748)
 
 [node name="pavement14" parent="greatCave/cavePivot" instance=ExtResource("10_xa5bo")]
 transform = Transform3D(0.5225, 0, 0, 0, 11.7305, -0.825155, 0, 4.43774, 2.18117, -8.68314, 5.71426, -67.8508)
@@ -804,13 +804,16 @@ transform = Transform3D(0.5225, 0, 0, 0, 11.7305, -0.825155, 0, 4.43774, 2.18117
 transform = Transform3D(0.5225, 0, 0, 0, 11.7305, -0.825155, 0, 4.43774, 2.18117, -8.68314, 7.36457, -72.2131)
 
 [node name="pavement13" parent="greatCave/cavePivot" instance=ExtResource("10_xa5bo")]
-transform = Transform3D(0.5225, 0, 0, 0, 11.7305, -0.825155, 0, 4.43774, 2.18117, -3.7676, 7.36457, -72.2131)
+transform = Transform3D(0.5225, 0, 0, 0, 26.3865, -0.825155, 0, 9.98221, 2.18117, -3.7676, 6.77712, -72.4353)
 
 [node name="pavement9" parent="greatCave/cavePivot" instance=ExtResource("10_xa5bo")]
 transform = Transform3D(0.5225, 0, 0, 0, 11.7305, -0.742882, 0, 4.43774, 1.9637, -8.6773, 3.91393, -62.0065)
 
 [node name="pavement8" parent="greatCave/cavePivot" instance=ExtResource("10_xa5bo")]
-transform = Transform3D(0.5225, 0, 0, 0, 12.362, -0.163698, 0, 2.11662, 0.956065, -3.7676, 4.78876, -64.8348)
+transform = Transform3D(0.5225, 0, 0, 0, 24.4625, -0.163698, 0, 4.18848, 0.956065, -3.7676, 4.29722, -64.919)
+
+[node name="pavement16" parent="greatCave/cavePivot" instance=ExtResource("10_xa5bo")]
+transform = Transform3D(0.555297, 0, 0, 0, 15.7721, -0.114589, 0, 2.70051, 0.669246, -3.79575, 3.70122, -66.194)
 
 [node name="pavement11" parent="greatCave/cavePivot" instance=ExtResource("10_xa5bo")]
 transform = Transform3D(0.5225, 0, 0, 0, 12.362, -0.163698, 0, 2.11662, 0.956065, -8.67996, 4.78876, -64.8348)
@@ -828,10 +831,10 @@ transform = Transform3D(2.09, 0, 0, 0, 0.931818, -0.76197, 0, 0.362926, 1.95637,
 transform = Transform3D(2.09, 0, 0, 0, 1, 0.000261642, 0, -0.000296776, 0.881798, -6.15891, 4.46638, -65.4309)
 
 [node name="rock_path4" parent="greatCave/cavePivot" instance=ExtResource("8_n0n0f")]
-transform = Transform3D(-4.09846e-08, 0, -0.943479, 0, 0.678217, 0, 0.937618, 0, -4.12408e-08, -6.08673, 1.12921, -52.7992)
+transform = Transform3D(-4.09846e-08, 0, -0.943479, 0, 0.678217, 0, 0.937618, 0, -4.12408e-08, -6.1588, 1.12921, -52.7992)
 
 [node name="rock_path5" parent="greatCave/cavePivot" instance=ExtResource("8_n0n0f")]
-transform = Transform3D(-4.09846e-08, 0, -0.943479, 0, 0.678217, 0, 0.937618, 0, -4.12408e-08, -5.52868, 1.12921, -47.829)
+transform = Transform3D(-4.09846e-08, 0, -0.943479, 0, 0.678217, 0, 0.937618, 0, -4.12408e-08, -5.60075, 1.12921, -47.829)
 
 [node name="waterSection" type="Node3D" parent="greatCave"]
 

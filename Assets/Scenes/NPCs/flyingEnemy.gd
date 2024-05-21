@@ -22,10 +22,10 @@ var scanMode = false;
 var paused = false;
 
 # numbers
-const maxUIDistance = 30;
+const maxUIDistance = 30.0;
 var invisFrames = 0;
 var flyTimer = 0;
-var playerDistance = 0;
+var playerDistance = 0.0;
 @export var speed = 0.1;
 @export var amplitude = 0.5;
 

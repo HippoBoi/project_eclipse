@@ -2,6 +2,8 @@ extends RigidBody3D
 
 @onready var rayCast = $RayCast3D;
 @onready var gravity = ProjectSettings.get_setting("physics/3d/default_gravity");
+@onready var upperCollision = $upperCollision
+
 
 @export var floatForce = 1.0;
 @export var waterDrag = 0.05;
@@ -14,8 +16,10 @@ var waterParticles = preload("res://Assets/Scenes/waterSplash.tscn");
 
 var waterHeight = 0.0;
 var timesHit = 0;
+var fallingTime = 0.0
 
 var isSubmerged = false;
+var isFalling = false;
 var once = false;
 
 var material;
@@ -39,7 +43,12 @@ func _ready():
 	
 	gravity_scale = 0;
 	
-func _process(_delta):
+func _process(delta):
+	if (isFalling):
+		fallingTime += delta
+		if (fallingTime > 0.5):
+			upperCollision.disabled = false;
+			isFalling = false;
 	if (rayCast.is_colliding() and rayCast.get_collider().has_method("hurtPlayer")):
 		rayCast.get_collider().hurtPlayer(10);
 
@@ -66,6 +75,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D):
 func onHit(dmg):
 	timesHit += dmg;
 	if (timesHit >= 2):
+		isFalling = true;
 		gravity_scale = 1;
 		return;
 	

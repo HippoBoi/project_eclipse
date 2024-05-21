@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://m23kvsmo6jva"]
+[gd_scene load_steps=8 format=3 uid="uid://m23kvsmo6jva"]
 
 [ext_resource type="Script" path="res://stalactite2.gd" id="1_n1du0"]
 [ext_resource type="PackedScene" uid="uid://b2sw80kge8wh1" path="res://Assets/Models/Stalactites/stalactite_04.glb" id="2_daobq"]
@@ -10,7 +10,10 @@ next_pass = ExtResource("4_xgb1x")
 albedo_texture = ExtResource("3_7dpi1")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qbhpi"]
-size = Vector3(2.28494, 4.38108, 2.28641)
+size = Vector3(1.30763, 3.07891, 1.34748)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iiypv"]
+size = Vector3(2.2141, 1.31769, 2.29613)
 
 [node name="Stalactite02" type="RigidBody3D"]
 script = ExtResource("1_n1du0")
@@ -20,10 +23,14 @@ script = ExtResource("1_n1du0")
 [node name="rock5_001" parent="stalactite_04" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_k7nul")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0103015, 2.18617, 0.0196667)
-visible = false
+[node name="lowerCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.166838, 2.83725, -0.00118306)
 shape = SubResource("BoxShape3D_qbhpi")
+
+[node name="upperCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0461922, 0.656036, -0.0660934)
+shape = SubResource("BoxShape3D_iiypv")
+disabled = true
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00111437, -2.38419e-07, 0.0896819)
