@@ -4,13 +4,13 @@ extends RigidBody3D
 @onready var gravity = ProjectSettings.get_setting("physics/3d/default_gravity");
 @onready var upperCollision = $upperCollision
 
-
 @export var floatForce = 1.0;
 @export var waterDrag = 0.05;
 @export var waterAngularDrag = 0.05;
 @export var waterInstance: MeshInstance3D;
 @export var heightOffset = 1.1;
 @export var maxDepth = -1.5;
+@export var instantFall = false;
 
 var waterParticles = preload("res://Assets/Scenes/waterSplash.tscn");
 
@@ -38,10 +38,14 @@ var descText: Array[String] = [
 	};
 
 func _ready():
+	gravity_scale = 0;
+	
 	if (waterInstance != null):
 		waterHeight = waterInstance.global_position.y;
 	
-	gravity_scale = 0;
+	if (instantFall == true):
+		isFalling = true;
+		gravity_scale = 1;
 	
 func _process(delta):
 	if (isFalling):
@@ -73,6 +77,9 @@ func _integrate_forces(state: PhysicsDirectBodyState3D):
 		state.angular_velocity *= 1 - waterAngularDrag;
 
 func onHit(dmg):
+	if (instantFall):
+		return;
+	
 	timesHit += dmg;
 	if (timesHit >= 2):
 		isFalling = true;
@@ -84,8 +91,8 @@ func onHit(dmg):
 	var ogPosZ = self.position.z;
 	var rng = RandomNumberGenerator.new();
 	var tween = create_tween();
-	tween.tween_property(self, "position", Vector3(rng.randf_range(-0.1, 0.1), rng.randf_range(-0.1, 0.1), rng.randf_range(-0.1, 0.1)), 0.01).as_relative();
-	tween.tween_property(self, "position", Vector3(rng.randf_range(-0.25, 0.25), rng.randf_range(-0.25, 0.25), rng.randf_range(-0.25, 0.25)), 0.01).as_relative();
+	tween.tween_property(self, "position", Vector3(rng.randf_range(-0.15, 0.15), rng.randf_range(-0.15, 0.15), rng.randf_range(-0.15, 0.15)), 0.01).as_relative();
+	tween.tween_property(self, "position", Vector3(rng.randf_range(-0.35, 0.35), rng.randf_range(-0.35, 0.35), rng.randf_range(-0.35, 0.35)), 0.01).as_relative();
 	tween.tween_property(self, "position", Vector3(ogPosX, ogPosY, ogPosZ), 0.1);
 	
 func getShader():
