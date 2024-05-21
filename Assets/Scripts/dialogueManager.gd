@@ -8,6 +8,7 @@ var currentLineIndex = 0;
 var textBox;
 var textBoxPosition;
 var curDialogueType;
+var pauseMovement;
 
 var isDialogueActive = false;
 var canAdvance = false;
@@ -18,12 +19,16 @@ func startDialogue(pos: Vector2, lines: Array[String], type: String = "", pause:
 	dialogueLines = lines;
 	textBoxPosition = pos;
 	curDialogueType = type;
+	pauseMovement = pause;
 	showTextbox();
+	
+	if (pause):
+		get_tree().call_group("Pausable", "pauseGame", true);
 	
 	isDialogueActive = true;
 	
 func showTextbox():
-	get_tree().call_group("Player", "scanDialogue", "start");
+	get_tree().call_group("Player", "scanDialogue", "start", pauseMovement);
 	textBox = textBoxScene.instantiate();
 	textBox.finishedDisplaying.connect(onTextBoxFinishedDisplaying);
 	get_tree().root.add_child(textBox);
@@ -51,5 +56,6 @@ func _input(event):
 
 func endDialogue():
 	get_tree().call_group("Player", "scanDialogue", "end");
+	get_tree().call_group("Pausable", "pauseGame", false);
 	isDialogueActive = false;
 	currentLineIndex = 0;

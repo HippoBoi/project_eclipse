@@ -126,6 +126,7 @@ var attackDelay = 15;
 
 # player parameters ---------------------
 var paused = false;
+var pauseMenu = false;
 var canUnpause = true;
 
 const comboMaxTime = 0.75;
@@ -258,7 +259,11 @@ func _process(delta):
 	debugLabel.text = "weapon: " + str(curWeapon);
 	
 	if (Input.is_action_just_pressed("exit")):
+		if (canUnpause == false):
+			return;
+		
 		paused = !paused;
+		pauseMenu = paused;
 		get_tree().call_group("Pausable", "pauseGame", paused);
 	
 	if (paused):
@@ -663,9 +668,12 @@ func scanObject(header: String = "Unknown", text: Array[String] = ["Unable to id
 	
 	DialogueManager.startDialogue(Vector2(320, 195), text, "scanner");
 
-func scanDialogue(action):
+func scanDialogue(action: String, shouldPause: bool = false):
 	if (action == "start"):
 		lockScanMode = false;
+		
+		if (shouldPause):
+			canUnpause = false;
 		return;
 	
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).set_parallel(true);
@@ -675,6 +683,7 @@ func scanDialogue(action):
 	await get_tree().create_timer(0.25).timeout;
 	
 	textUI.hide();
+	canUnpause = true;
 	isScanning = false;
 
 func toggleScanner(forceMode = null):
@@ -813,8 +822,8 @@ func pauseGame(pause):
 	upgradesInventory();
 	
 	paused = pause;
-	menuUI.visible = pause;
-	if (pause):
+	menuUI.visible = pauseMenu;
+	if (pauseMenu):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;
 		return;
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
