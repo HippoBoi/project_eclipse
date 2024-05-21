@@ -1,7 +1,7 @@
 [gd_scene load_steps=35 format=3 uid="uid://b1x8wbdph00m7"]
 
 [ext_resource type="Environment" uid="uid://butr3rotlc53j" path="res://Assets/enviromentOne.tres" id="1_ca1ik"]
-[ext_resource type="PackedScene" uid="uid://b878in5wq262x" path="res://Assets/Scenes/beam_door.tscn" id="2_3ryx4"]
+[ext_resource type="PackedScene" uid="uid://b878in5wq262x" path="res://Assets/Scenes/Objects/beam_door.tscn" id="2_3ryx4"]
 [ext_resource type="PackedScene" uid="uid://dijy3kqjqk7uk" path="res://Assets/Models/rock_1.tscn" id="2_3w8n0"]
 [ext_resource type="PackedScene" uid="uid://dciv1hwlwx0cw" path="res://Assets/Scenes/waterTest.tscn" id="3_0leub"]
 [ext_resource type="PackedScene" uid="uid://obbe4kte6dn3" path="res://Assets/Models/rock_2.tscn" id="3_5qfkt"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c35epl7iqu6rr" path="res://Assets/Models/rock_06.tscn" id="6_itruw"]
 [ext_resource type="PackedScene" uid="uid://cdpmid63nvs2r" path="res://Assets/Scenes/NPCs/craler.tscn" id="6_wboru"]
 [ext_resource type="PackedScene" uid="uid://bblj73klmcmn" path="res://Assets/Models/rock_7.tscn" id="7_doke4"]
-[ext_resource type="PackedScene" uid="uid://qw5teecuqtsn" path="res://Assets/Scenes/fireTorch.tscn" id="8_2nath"]
+[ext_resource type="PackedScene" uid="uid://qw5teecuqtsn" path="res://Assets/Scenes/Objects/fireTorch.tscn" id="8_2nath"]
 [ext_resource type="PackedScene" uid="uid://c32mhovvbiroi" path="res://Assets/Models/rock_path.tscn" id="8_n0n0f"]
 [ext_resource type="PackedScene" uid="uid://prhof6v2xej3" path="res://Assets/Models/pavement.tscn" id="10_xa5bo"]
 [ext_resource type="PackedScene" uid="uid://m23kvsmo6jva" path="res://Assets/Models/stalactite_02.tscn" id="14_c2kmq"]

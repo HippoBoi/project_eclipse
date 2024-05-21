@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b6gurk7iyrsqd"]
 
 [ext_resource type="PackedScene" uid="uid://cikiodi3e0dep" path="res://Assets/Models/Stalactites/stalactite_01.glb" id="1_axx7a"]
-[ext_resource type="Script" path="res://stalactite2.gd" id="2_7fqsb"]
+[ext_resource type="Script" path="res://Assets/Models/stalactite2.gd" id="2_7fqsb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qbhpi"]
 size = Vector3(1, 1.7878, 1)

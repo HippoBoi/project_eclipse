@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bkwu0cqyaufgj"]
 
-[ext_resource type="Script" path="res://SelectionWheel.gd" id="1_de8c7"]
+[ext_resource type="Script" path="res://Assets/Scripts/SelectionWheel.gd" id="1_de8c7"]
 [ext_resource type="Texture2D" uid="uid://dmwivw72k6g6f" path="res://Assets/Sprites/1.png" id="2_ofwo1"]
 [ext_resource type="Script" path="res://Assets/Scripts/playerWeaponList.gd" id="3_jjv68"]
 [ext_resource type="Texture2D" uid="uid://cpqqhv6enrvl1" path="res://Assets/Sprites/3.png" id="4_t852u"]

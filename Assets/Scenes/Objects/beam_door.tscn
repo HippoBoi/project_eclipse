@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b878in5wq262x"]
 
-[ext_resource type="Script" path="res://beam_door.gd" id="1_q703m"]
+[ext_resource type="Script" path="res://Assets/Scenes/Objects/beam_door.gd" id="1_q703m"]
 [ext_resource type="Material" uid="uid://bm8h3drxr6fyp" path="res://Assets/Materials/shaderMaterial.tres" id="2_kvljq"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_yrs7o"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://m23kvsmo6jva"]
 
-[ext_resource type="Script" path="res://stalactite2.gd" id="1_n1du0"]
+[ext_resource type="Script" path="res://Assets/Models/stalactite2.gd" id="1_n1du0"]
 [ext_resource type="PackedScene" uid="uid://b2sw80kge8wh1" path="res://Assets/Models/Stalactites/stalactite_04.glb" id="2_daobq"]
 [ext_resource type="Texture2D" uid="uid://c0n02wo35cvsm" path="res://Assets/Models/Stalactites/stalactite_04_rock.png" id="3_7dpi1"]
 [ext_resource type="Material" uid="uid://brdh2jqu8fhxn" path="res://Assets/Materials/outlinePass.tres" id="4_xgb1x"]

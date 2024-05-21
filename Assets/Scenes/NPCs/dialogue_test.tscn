@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bhll0srh5nn4v"]
 
-[ext_resource type="PackedScene" uid="uid://h84twjxox24s" path="res://bird.glb" id="1_l7nx3"]
+[ext_resource type="PackedScene" uid="uid://h84twjxox24s" path="res://Assets/Models/bird.glb" id="1_l7nx3"]
 [ext_resource type="Material" uid="uid://brdh2jqu8fhxn" path="res://Assets/Materials/outlinePass.tres" id="2_8o0il"]
 [ext_resource type="Script" path="res://Assets/Scenes/NPCs/dialogue_test.gd" id="2_v8ga1"]
 

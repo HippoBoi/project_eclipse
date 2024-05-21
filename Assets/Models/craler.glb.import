@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://vxmdw3303c3m"
-path="res://.godot/imported/craler.glb-82d3f3a08b7d68fec1e42b63b7faea23.scn"
+path="res://.godot/imported/craler.glb-970f2562c55c73b4423bc73185206d4c.scn"
 
 [deps]
 
-source_file="res://craler.glb"
-dest_files=["res://.godot/imported/craler.glb-82d3f3a08b7d68fec1e42b63b7faea23.scn"]
+source_file="res://Assets/Models/craler.glb"
+dest_files=["res://.godot/imported/craler.glb-970f2562c55c73b4423bc73185206d4c.scn"]
 
 [params]
 
