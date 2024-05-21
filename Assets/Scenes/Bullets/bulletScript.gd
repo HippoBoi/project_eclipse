@@ -1,9 +1,11 @@
 extends Node3D
 
 var speed = 40.0;
+var timeAlive = 0.0;
 @export var dmg = 1.0;
 
 var stopMoving = false;
+var gamePaused = false;
 
 @onready var mesh = $MeshInstance3D;
 @onready var rayCast = $RayCast3D;
@@ -11,6 +13,9 @@ var stopMoving = false;
 @onready var waterParticles = $waterParticles;
 
 func _process(delta):
+	if (gamePaused):
+		return;
+	
 	if (rayCast.is_colliding()):
 		if (!rayCast.get_collider().is_in_group("Water")):
 			if (rayCast.get_collider().has_method("onHit")):
@@ -19,8 +24,9 @@ func _process(delta):
 			mesh.hide();
 			stopMoving = true;
 			parts.emitting = true;
-			await get_tree().create_timer(1.0).timeout;
-			queue_free();
+			timeAlive += delta;
+			if (timeAlive > 3.0):
+				queue_free();
 			return;
 		
 		waterParticles.emitting = true;
@@ -30,5 +36,5 @@ func _process(delta):
 		
 	position += transform.basis * Vector3(0, 0, -speed) * delta;
 
-func _on_timer_timeout():
-	queue_free();
+func pauseGame(pause):
+	gamePaused = pause;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://b1x8wbdph00m7"]
+[gd_scene load_steps=35 format=3 uid="uid://b1x8wbdph00m7"]
 
 [ext_resource type="Environment" uid="uid://butr3rotlc53j" path="res://Assets/enviromentOne.tres" id="1_ca1ik"]
 [ext_resource type="PackedScene" uid="uid://b878in5wq262x" path="res://Assets/Scenes/beam_door.tscn" id="2_3ryx4"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://prhof6v2xej3" path="res://Assets/Models/pavement.tscn" id="10_xa5bo"]
 [ext_resource type="PackedScene" uid="uid://m23kvsmo6jva" path="res://Assets/Models/stalactite_02.tscn" id="14_c2kmq"]
 [ext_resource type="PackedScene" uid="uid://bwqddeqtjqc0s" path="res://Assets/Scenes/NPCs/flyingEnemy.tscn" id="15_pgn6s"]
+[ext_resource type="PackedScene" uid="uid://bhll0srh5nn4v" path="res://Assets/Scenes/NPCs/dialogue_test.tscn" id="20_jafpl"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_n8bn6"]
 
@@ -1195,3 +1196,6 @@ transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -1.48397, 1.11519, -22)
 
 [node name="flyingEnemy" parent="." instance=ExtResource("15_pgn6s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3.19137, -17)
+
+[node name="bird" parent="." instance=ExtResource("20_jafpl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -0.266039, -10)

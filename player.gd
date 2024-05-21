@@ -640,7 +640,7 @@ func checkFOV():
 			objectOnSight = colliding;
 
 func scanObject(header: String = "Unknown", text: Array[String] = ["Unable to identify."]):
-	if (isScanning):
+	if (isScanning or DialogueManager.isDialogueActive):
 		return;
 		
 	scanTextName.text = header;

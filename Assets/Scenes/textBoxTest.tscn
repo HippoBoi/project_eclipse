@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://mwe88r03ithe"]
 
-[ext_resource type="Texture2D" uid="uid://wsxts3jbylm1" path="res://icon.svg" id="1_lcrki"]
 [ext_resource type="Script" path="res://textBoxTest.gd" id="1_nss45"]
 [ext_resource type="FontFile" uid="uid://cjr63v44rd26b" path="res://Assets/Plaza Regular.ttf" id="2_d1lnb"]
+[ext_resource type="Texture2D" uid="uid://c63hkqj177aom" path="res://Assets/Models/Rock Models/rock-7_rock.png" id="2_p4p8u"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xkfkx"]
 font = ExtResource("2_d1lnb")
@@ -21,8 +21,8 @@ script = ExtResource("1_nss45")
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 modulate = Color(0.462745, 0.113725, 0, 0.529412)
 layout_mode = 2
-texture = ExtResource("1_lcrki")
-region_rect = Rect2(16, 16, 96, 96)
+texture = ExtResource("2_p4p8u")
+region_rect = Rect2(0, 0, 32, 32)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

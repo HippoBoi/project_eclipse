@@ -12,7 +12,7 @@ var curDialogueType;
 var isDialogueActive = false;
 var canAdvance = false;
 
-func startDialogue(pos: Vector2, lines: Array[String], type = ""):
+func startDialogue(pos: Vector2, lines: Array[String], type: String = "", pause: bool = false):
 	if (isDialogueActive):
 		return;
 	dialogueLines = lines;
@@ -53,4 +53,3 @@ func endDialogue():
 	get_tree().call_group("Player", "scanDialogue", "end");
 	isDialogueActive = false;
 	currentLineIndex = 0;
-	print("should close now");

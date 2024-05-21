@@ -30,7 +30,7 @@ size = Vector3(0.1, 0.1, 0.1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_nr0m8"]
 size = Vector3(0.137665, 0.213989, 1.10059)
 
-[node name="cyanBullet" type="Node3D"]
+[node name="cyanBullet" type="Node3D" groups=["Pausable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.567832, 0, 0, 0)
 script = ExtResource("1_d8xa8")
 
@@ -67,14 +67,8 @@ explosiveness = 1.0
 process_material = ExtResource("2_k3peo")
 draw_pass_1 = SubResource("BoxMesh_1d8q8")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
-autostart = true
-
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="hitbox" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00498962, 0.0145874, -0.452637)
 shape = SubResource("BoxShape3D_nr0m8")
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
