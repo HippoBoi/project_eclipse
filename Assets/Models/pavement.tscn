@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://prhof6v2xej3"]
+
+[ext_resource type="PackedScene" uid="uid://bkq72dt4h0ery" path="res://Assets/Models/Rock Models/pavement.glb" id="1_re0u0"]
+[ext_resource type="Texture2D" uid="uid://dmbuih0c0ac6" path="res://Assets/Models/Rock Models/pavement_pavement.png" id="2_orjnc"]
+[ext_resource type="Texture2D" uid="uid://ciaf3umq23fa3" path="res://Assets/Models/Rock Models/pavement_n.png" id="3_m7bfc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4l043"]
+albedo_texture = ExtResource("2_orjnc")
+metallic_specular = 1.0
+normal_enabled = true
+normal_texture = ExtResource("3_m7bfc")
+
+[node name="pavement" instance=ExtResource("1_re0u0")]
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_4l043")

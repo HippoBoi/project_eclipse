@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b1x8wbdph00m7"]
+[gd_scene load_steps=34 format=3 uid="uid://b1x8wbdph00m7"]
 
 [ext_resource type="Environment" uid="uid://butr3rotlc53j" path="res://Assets/enviromentOne.tres" id="1_ca1ik"]
 [ext_resource type="PackedScene" uid="uid://b878in5wq262x" path="res://Assets/Scenes/beam_door.tscn" id="2_3ryx4"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bblj73klmcmn" path="res://Assets/Models/rock_7.tscn" id="7_doke4"]
 [ext_resource type="PackedScene" uid="uid://qw5teecuqtsn" path="res://Assets/Scenes/fireTorch.tscn" id="8_2nath"]
 [ext_resource type="PackedScene" uid="uid://c32mhovvbiroi" path="res://Assets/Models/rock_path.tscn" id="8_n0n0f"]
+[ext_resource type="PackedScene" uid="uid://prhof6v2xej3" path="res://Assets/Models/pavement.tscn" id="10_xa5bo"]
 [ext_resource type="PackedScene" uid="uid://m23kvsmo6jva" path="res://Assets/Models/stalactite_02.tscn" id="14_c2kmq"]
 [ext_resource type="PackedScene" uid="uid://bwqddeqtjqc0s" path="res://Assets/Scenes/NPCs/flyingEnemy.tscn" id="15_pgn6s"]
 
@@ -436,6 +437,15 @@ transform = Transform3D(1.43914, 0, 0, 0, 1.44713, 0, 0, 0, 1.41405, -6.13386, 0
 [node name="torch7" parent="greatCave/introCave" instance=ExtResource("8_2nath")]
 transform = Transform3D(1.43914, 0, 0, 0, 1.44713, 0, 0, 0, 1.41405, -11.8904, 0, -31.7967)
 
+[node name="torch9" parent="greatCave/introCave" instance=ExtResource("8_2nath")]
+transform = Transform3D(1.43914, 0, 0, 0, 1.44713, 0, 0, 0, 1.41405, -11.8904, 0, -31.7967)
+
+[node name="torch10" parent="greatCave/introCave" instance=ExtResource("8_2nath")]
+transform = Transform3D(1.43914, 0, 0, 0, 1.44713, 0, 0, 0, 1.41405, -9.83976, 1.10805, -50.1793)
+
+[node name="torch11" parent="greatCave/introCave" instance=ExtResource("8_2nath")]
+transform = Transform3D(1.43914, 0, 0, 0, 1.44713, 0, 0, 0, 1.41405, -1.96001, 1.10805, -50.1793)
+
 [node name="torch8" parent="greatCave/introCave" instance=ExtResource("8_2nath")]
 transform = Transform3D(1.43914, 0, 0, 0, 1.44713, 0, 0, 0, 1.41405, 5.37926, 0, -31.7967)
 
@@ -445,11 +455,6 @@ transform = Transform3D(1.43914, 0, 0, 0, 1.44713, 0, 0, 0, 1.41405, 4.21201, 0,
 [node name="cavePivot" type="Node3D" parent="greatCave"]
 
 [node name="layout" type="Node3D" parent="greatCave/cavePivot"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="greatCave/cavePivot/layout"]
-transform = Transform3D(1, 0, 0, 0, 11.0352, 0, 0, 0, 16.6628, 6.43916, 6.55982, -56.8265)
-mesh = SubResource("BoxMesh_n8bn6")
-skeleton = NodePath("../..")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="greatCave/cavePivot/layout"]
 transform = Transform3D(0.417502, -10.0274, 0, 0.908676, 4.60722, 0, 0, 0, 10.6695, 2.06928, 14.3779, -71.5938)
@@ -564,11 +569,6 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="greatCave/cavePivot/layout/MeshInstance3D41/StaticBody3D"]
 shape = SubResource("BoxShape3D_0bx2w")
 
-[node name="MeshInstance3D18" type="MeshInstance3D" parent="greatCave/cavePivot/layout"]
-transform = Transform3D(-7.06423, 9.09548, 0, -2.68528, -23.9277, 0, 0, 0, 38.6453, 11.3582, 13.8051, -61.3713)
-mesh = SubResource("BoxMesh_n8bn6")
-skeleton = NodePath("../..")
-
 [node name="MeshInstance3D33" type="MeshInstance3D" parent="greatCave/cavePivot/layout"]
 transform = Transform3D(-1.05051, 1.96029, 0, -0.0806849, -25.5229, 0, 0, 0, 22.7471, 12.7265, 13.1577, -92.047)
 mesh = SubResource("BoxMesh_n8bn6")
@@ -649,18 +649,8 @@ transform = Transform3D(0.835845, -4.45737, 0, 0.839119, 4.43997, 0, 0, 0, 7.349
 mesh = SubResource("BoxMesh_n8bn6")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="greatCave/cavePivot/layout"]
-transform = Transform3D(6.0959, -0.344885, 0, 0.174427, 12.0531, 0, 0, 0, 10.6695, 9.27469, 6.73682, -70.3497)
-mesh = SubResource("BoxMesh_n8bn6")
-skeleton = NodePath("../..")
-
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="greatCave/cavePivot/layout"]
 transform = Transform3D(1, 0, 0, 0, 11.0352, 0, 0, 0, 16.6628, -18.5285, 6.55982, -51.4119)
-mesh = SubResource("BoxMesh_n8bn6")
-skeleton = NodePath("../..")
-
-[node name="MeshInstance3D20" type="MeshInstance3D" parent="greatCave/cavePivot/layout"]
-transform = Transform3D(0.707107, 0, -6.68061, 0, 8.93851, 0, 0.707107, 0, 6.68061, -15.6573, 4.71161, -60.6726)
 mesh = SubResource("BoxMesh_n8bn6")
 skeleton = NodePath("../..")
 
@@ -679,23 +669,9 @@ transform = Transform3D(0.0200176, 0, -2.48304, 0, 5.00557, 0, 0.9998, 0, 0.0497
 mesh = SubResource("BoxMesh_n8bn6")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D21" type="MeshInstance3D" parent="greatCave/cavePivot/layout"]
-transform = Transform3D(1, -4.58261e-08, -4.36356e-07, 0, 4.17499, -3.10088, 2.98023e-08, 1.53767, 8.41932, -8.65728, 1.48264, -60.4184)
-mesh = SubResource("BoxMesh_n8bn6")
-skeleton = NodePath("../..")
-
 [node name="MeshInstance3D27" type="MeshInstance3D" parent="greatCave/cavePivot/layout"]
 transform = Transform3D(1, -4.58261e-08, -4.36356e-07, 0, 4.17499, -3.10088, 2.98023e-08, 1.53767, 8.41932, -3.77028, 1.48264, -60.4184)
-mesh = SubResource("BoxMesh_n8bn6")
-skeleton = NodePath("../..")
-
-[node name="MeshInstance3D22" type="MeshInstance3D" parent="greatCave/cavePivot/layout"]
-transform = Transform3D(1, -4.90739e-08, -4.33845e-07, 0, 4.13322, -3.32064, 2.98023e-08, 1.64665, 8.33509, -8.65728, 5.00724, -70.6653)
-mesh = SubResource("BoxMesh_n8bn6")
-skeleton = NodePath("../..")
-
-[node name="MeshInstance3D28" type="MeshInstance3D" parent="greatCave/cavePivot/layout"]
-transform = Transform3D(1, -4.90739e-08, -4.33845e-07, 0, 4.13322, -3.32064, 2.98023e-08, 1.64665, 8.33509, -3.69416, 5.00724, -70.6653)
+visible = false
 mesh = SubResource("BoxMesh_n8bn6")
 skeleton = NodePath("../..")
 
@@ -751,6 +727,111 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="greatCave/cavePivot/layout/MeshInstance3D26/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, -1.77636e-15, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_g5i8d")
+
+[node name="rock_78" parent="greatCave/cavePivot" instance=ExtResource("6_itruw")]
+transform = Transform3D(1, 0, 2.06492e-08, 0, 3.11024, 0, -1.33118e-07, 0, 2.87232, -18.3387, -0.0700827, -50.76)
+
+[node name="rock_81" parent="greatCave/cavePivot" instance=ExtResource("6_itruw")]
+transform = Transform3D(0.979251, -0.630292, 2.06492e-08, 0.202651, 3.0457, 0, -1.32969e-07, 4.53118e-09, 2.87232, 11.6613, -0.0700827, -50.5013)
+
+[node name="rock_82" parent="greatCave/cavePivot" instance=ExtResource("6_itruw")]
+transform = Transform3D(0.979251, -0.630292, 2.06492e-08, 0.202651, 3.0457, 0, -1.32969e-07, 4.53118e-09, 2.87232, 11.6613, -0.0700827, -67.6041)
+
+[node name="rock_83" parent="greatCave/cavePivot" instance=ExtResource("6_itruw")]
+transform = Transform3D(0.979251, -0.630292, 2.06492e-08, 0.202651, 3.0457, 0, -1.32969e-07, 4.53118e-09, 2.87232, 11.6613, -0.0700827, -84.835)
+
+[node name="rock_80" parent="greatCave/cavePivot" instance=ExtResource("6_itruw")]
+transform = Transform3D(-1.7683e-07, 0, 0.857081, 0, 1.87929, 0, -1, 0, -4.36258e-08, -20.8693, -0.0700827, -59.0245)
+
+[node name="rock_79" parent="greatCave/cavePivot" instance=ExtResource("6_itruw")]
+transform = Transform3D(0.926489, 1.25842, 2.06492e-08, -0.376321, 3.09818, 0, -1.3259e-07, -9.0468e-09, 2.87232, -24.5974, 0.349882, -50.76)
+
+[node name="rock_84" parent="greatCave/cavePivot" instance=ExtResource("6_itruw")]
+transform = Transform3D(0.926489, 1.25842, 2.06492e-08, -0.376321, 3.09818, 0, -1.3259e-07, -9.0468e-09, 2.87232, -24.5974, 0.349882, -67.7657)
+
+[node name="rock_85" parent="greatCave/cavePivot" instance=ExtResource("6_itruw")]
+transform = Transform3D(0.926489, 1.25842, 2.06492e-08, -0.376321, 3.09818, 0, -1.3259e-07, -9.0468e-09, 2.87232, -24.5974, 0.349882, -84.75)
+
+[node name="rock_86" parent="greatCave/cavePivot" instance=ExtResource("3_5qfkt")]
+transform = Transform3D(-4.36165, 3.3062e-06, 0.903026, -0.0122703, 5.1531, -0.00646105, -2.73455, -0.0231225, -1.44031, -16.0725, -0.0722502, -63.8718)
+
+[node name="rock_87" parent="greatCave/cavePivot" instance=ExtResource("3_5qfkt")]
+transform = Transform3D(0.187365, 0.0200263, 1.69886, -0.0122703, 5.1531, -0.00646105, -5.14458, -0.0115584, 0.0618885, 6.9275, -0.0722502, -64.4271)
+
+[node name="rock_4" parent="greatCave/cavePivot" instance=ExtResource("5_p4mv6")]
+transform = Transform3D(-4.67369, 0, -1.13137, 0, 2.38, 0, 4.67369, 0, -1.13137, -15.3792, 0.851029, -61.1024)
+
+[node name="rock_7" parent="greatCave/cavePivot" instance=ExtResource("5_p4mv6")]
+transform = Transform3D(-1.73452e-06, 6.06329e-14, -2.08, -6.67572e-07, -2.62055, 0, -9.25343, 2.62516e-07, 2.32458e-07, 6.9411, 10.2023, -67.6982)
+
+[node name="rock_8" parent="greatCave/cavePivot" instance=ExtResource("5_p4mv6")]
+transform = Transform3D(-0.84308, 0.316051, -2.0561, 0.102428, 2.60143, 0.249799, 9.21438, -2.96765e-07, -0.190902, 6.87467, 9.79422, -68.1333)
+
+[node name="rock_3" parent="greatCave/cavePivot" instance=ExtResource("4_j1v7e")]
+transform = Transform3D(1.4, 0, 0, 0, 2.2, 0, 0, 0, 1.4, -1.14991, 1, -64.7017)
+
+[node name="rock_10" parent="greatCave/cavePivot" instance=ExtResource("4_j1v7e")]
+transform = Transform3D(1.4, 0, 0, 0, 2.2, 0, 0, 0, 1.4, -10.4594, 1, -64.7017)
+
+[node name="rock_5" parent="greatCave/cavePivot" instance=ExtResource("4_j1v7e")]
+transform = Transform3D(1.68, 0, 0, 0, 3.74, 0, 0, 0, 4.7334, 7.60881, 0.350425, -55.6517)
+
+[node name="rock_9" parent="greatCave/cavePivot" instance=ExtResource("4_j1v7e")]
+transform = Transform3D(3.13854, 0, 0, 0, 5.00128, 0, 0, 0, 7.57344, -16.8049, -0.386507, -50.1063)
+
+[node name="rock_6" parent="greatCave/cavePivot" instance=ExtResource("4_j1v7e")]
+transform = Transform3D(0.259762, -0.802314, 4.58503, -0.322749, 3.94431, 1.05323, -1.62811, -0.909906, 0.522743, 11.6266, 0.350425, -51.0177)
+
+[node name="pavement" parent="greatCave/cavePivot" instance=ExtResource("10_xa5bo")]
+transform = Transform3D(2.09, 0, 0, 0, 0.931818, -0.846634, 0, 0.362926, 2.17375, -6.15891, 1.93748, -58.038)
+
+[node name="pavement6" parent="greatCave/cavePivot" instance=ExtResource("10_xa5bo")]
+transform = Transform3D(0.5225, 0, 0, 0, 11.7672, -0.807155, 0, 4.33952, 2.18871, -3.7676, 2.37119, -57.8684)
+
+[node name="pavement10" parent="greatCave/cavePivot" instance=ExtResource("10_xa5bo")]
+transform = Transform3D(0.5225, 0, 0, 0, 11.7672, -0.807155, 0, 4.33952, 2.18871, -8.67805, 2.37119, -57.8684)
+
+[node name="pavement7" parent="greatCave/cavePivot" instance=ExtResource("10_xa5bo")]
+transform = Transform3D(0.5225, 0, 0, 0, 11.7305, -0.742882, 0, 4.43774, 1.9637, -3.7676, 3.91393, -62.0065)
+
+[node name="pavement12" parent="greatCave/cavePivot" instance=ExtResource("10_xa5bo")]
+transform = Transform3D(0.5225, 0, 0, 0, 11.7305, -0.825155, 0, 4.43774, 2.18117, -3.7676, 5.71426, -67.8508)
+
+[node name="pavement14" parent="greatCave/cavePivot" instance=ExtResource("10_xa5bo")]
+transform = Transform3D(0.5225, 0, 0, 0, 11.7305, -0.825155, 0, 4.43774, 2.18117, -8.68314, 5.71426, -67.8508)
+
+[node name="pavement15" parent="greatCave/cavePivot" instance=ExtResource("10_xa5bo")]
+transform = Transform3D(0.5225, 0, 0, 0, 11.7305, -0.825155, 0, 4.43774, 2.18117, -8.68314, 7.36457, -72.2131)
+
+[node name="pavement13" parent="greatCave/cavePivot" instance=ExtResource("10_xa5bo")]
+transform = Transform3D(0.5225, 0, 0, 0, 11.7305, -0.825155, 0, 4.43774, 2.18117, -3.7676, 7.36457, -72.2131)
+
+[node name="pavement9" parent="greatCave/cavePivot" instance=ExtResource("10_xa5bo")]
+transform = Transform3D(0.5225, 0, 0, 0, 11.7305, -0.742882, 0, 4.43774, 1.9637, -8.6773, 3.91393, -62.0065)
+
+[node name="pavement8" parent="greatCave/cavePivot" instance=ExtResource("10_xa5bo")]
+transform = Transform3D(0.5225, 0, 0, 0, 12.362, -0.163698, 0, 2.11662, 0.956065, -3.7676, 4.78876, -64.8348)
+
+[node name="pavement11" parent="greatCave/cavePivot" instance=ExtResource("10_xa5bo")]
+transform = Transform3D(0.5225, 0, 0, 0, 12.362, -0.163698, 0, 2.11662, 0.956065, -8.67996, 4.78876, -64.8348)
+
+[node name="pavement2" parent="greatCave/cavePivot" instance=ExtResource("10_xa5bo")]
+transform = Transform3D(2.09, 0, 0, 0, 0.931818, -0.846634, 0, 0.362926, 2.17375, -6.15891, 3.63074, -62.3855)
+
+[node name="pavement4" parent="greatCave/cavePivot" instance=ExtResource("10_xa5bo")]
+transform = Transform3D(2.09, 0, 0, 0, 0.931818, -0.846634, 0, 0.362926, 2.17375, -6.15891, 5.28854, -68.4931)
+
+[node name="pavement5" parent="greatCave/cavePivot" instance=ExtResource("10_xa5bo")]
+transform = Transform3D(2.09, 0, 0, 0, 0.931818, -0.76197, 0, 0.362926, 1.95637, -6.15891, 6.88639, -72.5956)
+
+[node name="pavement3" parent="greatCave/cavePivot" instance=ExtResource("10_xa5bo")]
+transform = Transform3D(2.09, 0, 0, 0, 1, 0.000261642, 0, -0.000296776, 0.881798, -6.15891, 4.46638, -65.4309)
+
+[node name="rock_path4" parent="greatCave/cavePivot" instance=ExtResource("8_n0n0f")]
+transform = Transform3D(-4.09846e-08, 0, -0.943479, 0, 0.678217, 0, 0.937618, 0, -4.12408e-08, -6.08673, 1.12921, -52.7992)
+
+[node name="rock_path5" parent="greatCave/cavePivot" instance=ExtResource("8_n0n0f")]
+transform = Transform3D(-4.09846e-08, 0, -0.943479, 0, 0.678217, 0, 0.937618, 0, -4.12408e-08, -5.52868, 1.12921, -47.829)
 
 [node name="waterSection" type="Node3D" parent="greatCave"]
 
@@ -865,6 +946,12 @@ transform = Transform3D(0.0216382, -0.107125, -3.25949, -0.190353, -2.19509, 0.1
 [node name="rock_127" parent="greatCave/waterSection" instance=ExtResource("6_itruw")]
 transform = Transform3D(0.0216382, -0.107125, -3.25949, 0.0701577, -2.22987, 0.16083, -0.9973, -0.15919, -0.0594046, -68.6088, 17.2754, -67.5929)
 
+[node name="rock_133" parent="greatCave/waterSection" instance=ExtResource("6_itruw")]
+transform = Transform3D(0.0216382, -0.112481, -1.95569, 0.0701577, -2.34136, 0.096498, -0.9973, -0.167149, -0.0356428, -67.0694, 17.0593, -87.6288)
+
+[node name="rock_134" parent="greatCave/waterSection" instance=ExtResource("6_itruw")]
+transform = Transform3D(0.0821512, -0.115464, -1.28647, 0.0318329, -2.3471, 0.0634773, -4.42126, -0.0190441, -0.0234461, -67.2677, 17.8871, -110.02)
+
 [node name="rock_83" parent="greatCave/waterSection" instance=ExtResource("6_itruw")]
 transform = Transform3D(0.106681, 0, -3.24537, 0, 2.45946, 0, 0.994293, 0, 0.348205, -32.2789, 0, -86.3412)
 
@@ -921,9 +1008,6 @@ transform = Transform3D(2.99688, 0.228717, 0.327507, 2.9927e-08, 3.2398, -0.3451
 
 [node name="rock_85" parent="greatCave/waterSection" instance=ExtResource("3_5qfkt")]
 transform = Transform3D(6.00249, -1.27334e-06, 1.11595e-06, 1.7802e-08, 4.44915, -0.517916, 3.03984e-06, 1.21356, 1.89878, -46.8491, -0.723813, -120.653)
-
-[node name="rock_103" parent="greatCave/waterSection" instance=ExtResource("3_5qfkt")]
-transform = Transform3D(6.00249, -1.75754e-06, 1.0002e-06, 1.7802e-08, 6.14099, -0.464197, 3.03984e-06, 1.67503, 1.70184, -65.7354, -0.723813, -111.166)
 
 [node name="rock_86" parent="greatCave/waterSection" instance=ExtResource("4_j1v7e")]
 transform = Transform3D(-1.43945, 0.445361, 3.87885, 0.0989845, 5.13429, -0.338273, -8.95918, -0.0148276, -0.626943, -62.0531, 0.0156258, -90.3233)
