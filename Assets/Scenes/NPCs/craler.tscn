@@ -25,8 +25,8 @@ script = ExtResource("1_fcrv8")
 maxInvisFrames = 0.1
 
 [node name="HealthPoints" parent="." instance=ExtResource("2_4vx24")]
-maxHP = 4.0
-HP = 4.0
+maxHP = 8.0
+HP = 8.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0740967, -0.141525, 0)

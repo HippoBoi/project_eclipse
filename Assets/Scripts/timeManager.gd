@@ -2,7 +2,7 @@ extends Node
 
 func timeStop(damage: float, intensity: float):
 	var stopTime = 0.02;
-	if (damage > 1.0):
+	if (damage > 2.0):
 		stopTime = 0.028;
 	stopTime = stopTime * intensity;
 	var timer = get_tree().create_timer(stopTime);

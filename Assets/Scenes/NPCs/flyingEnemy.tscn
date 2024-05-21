@@ -58,8 +58,8 @@ script = ExtResource("1_0jo4k")
 
 [node name="HealthPoints" parent="." instance=ExtResource("2_364oc")]
 script = SubResource("GDScript_atfo8")
-maxHP = 8.0
-HP = 8.0
+maxHP = 16.0
+HP = 16.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0740967, -0.141525, 0)

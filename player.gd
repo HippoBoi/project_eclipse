@@ -575,11 +575,11 @@ func attack():
 		var slashAnims = ["slashAnim1", "slashAnim2", "slashAnim3"];
 		
 		if (attackCharge < 35):
-			weaponDamage = 1;
+			weaponDamage = 2;
 			weaponAnimPlayer.play(slashAnims[timesAttacked - 1]);
 			$neck/camOrigin/head/MainCamera/slashEffect.get_node("animPlayer").play("slashAnim");
 		else:
-			weaponDamage = 2;
+			weaponDamage = 3;
 			weaponAnimPlayer.play("slashCharged");
 			$neck/camOrigin/head/MainCamera/slashEffect2.get_node("animPlayer").play("slashAnim");
 		hitbox.get_parent().get_parent().dmg = weaponDamage;
