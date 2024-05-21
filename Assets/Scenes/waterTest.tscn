@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dciv1hwlwx0cw"]
 
 [ext_resource type="Material" uid="uid://ber33qdm2mc2u" path="res://Assets/Materials/defaultWaterShader.tres" id="1_kmpkd"]
-[ext_resource type="Script" path="res://waterTest.gd" id="1_y5bkp"]
+[ext_resource type="Script" path="res://Assets/Models/Effects/waterTest.gd" id="1_y5bkp"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_iay40"]
 

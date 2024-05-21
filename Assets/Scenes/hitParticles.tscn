@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://deqnl1rvp8g80" path="res://Assets/Materials/cyanBullet.tres" id="1_46bjr"]
 [ext_resource type="Material" uid="uid://be1hnqeyu2vrd" path="res://Assets/Materials/bulletParticles.tres" id="1_108i6"]
-[ext_resource type="Script" path="res://waterSplash.gd" id="2_67ulk"]
+[ext_resource type="Script" path="res://Assets/Models/Effects/waterSplash.gd" id="2_67ulk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uxnjs"]
 albedo_color = Color(0.537255, 1, 1, 1)

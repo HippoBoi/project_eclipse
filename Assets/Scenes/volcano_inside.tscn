@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dk65fs1c0ftn5" path="res://Assets/Models/Volcano Models/v_rock_floor.tscn" id="3_ply4j"]
 [ext_resource type="PackedScene" uid="uid://cmkgmxx2yky2y" path="res://Assets/Models/Volcano Models/v_rock_02.tscn" id="4_mgrs5"]
 [ext_resource type="PackedScene" uid="uid://dj8h07cq8sss1" path="res://Assets/Scenes/lava.tscn" id="4_qsrtq"]
-[ext_resource type="PackedScene" uid="uid://qw5teecuqtsn" path="res://Assets/Scenes/fireTorch.tscn" id="4_r6gkg"]
+[ext_resource type="PackedScene" uid="uid://qw5teecuqtsn" path="res://Assets/Scenes/Objects/fireTorch.tscn" id="4_r6gkg"]
 [ext_resource type="PackedScene" uid="uid://bi8mr2g0af13b" path="res://Assets/Models/Volcano Models/v_rock_01.tscn" id="5_u38kw"]
 [ext_resource type="PackedScene" uid="uid://b6gurk7iyrsqd" path="res://Assets/Models/stalactite_01.tscn" id="7_qma37"]
 [ext_resource type="PackedScene" uid="uid://bhll0srh5nn4v" path="res://Assets/Scenes/NPCs/dialogue_test.tscn" id="8_4m0hb"]

@@ -3,8 +3,8 @@
 [ext_resource type="Material" uid="uid://cst3pp0oxny0m" path="res://Assets/Materials/test_level.tres" id="1_1e3a5"]
 [ext_resource type="PackedScene" uid="uid://b8c6totxokdn6" path="res://Assets/Scenes/player.tscn" id="1_jxn7r"]
 [ext_resource type="PackedScene" uid="uid://cdpmid63nvs2r" path="res://Assets/Scenes/NPCs/craler.tscn" id="2_dftsr"]
-[ext_resource type="PackedScene" uid="uid://ceplm63aea3jj" path="res://Assets/Scenes/stalactite_2.tscn" id="3_lnqts"]
-[ext_resource type="PackedScene" uid="uid://b878in5wq262x" path="res://Assets/Scenes/beam_door.tscn" id="5_cnyev"]
+[ext_resource type="PackedScene" path="res://Assets/Scenes/stalactite_2.tscn" id="3_lnqts"]
+[ext_resource type="PackedScene" uid="uid://b878in5wq262x" path="res://Assets/Scenes/Objects/beam_door.tscn" id="5_cnyev"]
 [ext_resource type="PackedScene" uid="uid://dciv1hwlwx0cw" path="res://Assets/Scenes/waterTest.tscn" id="6_yrtrw"]
 [ext_resource type="PackedScene" uid="uid://d4fl1kd2gykix" path="res://Assets/Scenes/upgradeTest.tscn" id="7_idva1"]
 

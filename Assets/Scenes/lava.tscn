@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://Assets/Shaders/waterShader.gdshader" id="1_517h7"]
 [ext_resource type="Texture2D" uid="uid://8g70d7wmo6bq" path="res://Assets/Textures/waterTex2.jpg" id="2_0op00"]
-[ext_resource type="Script" path="res://waterTest.gd" id="2_rur5e"]
+[ext_resource type="Script" path="res://Assets/Models/Effects/waterTest.gd" id="2_rur5e"]
 [ext_resource type="Texture2D" uid="uid://ww1lbiotc8rt" path="res://Assets/Textures/waterTex.jpg" id="3_v2rlk"]
 [ext_resource type="Texture2D" uid="uid://b76x20ybrg5um" path="res://Assets/Textures/noiseTexture.png" id="4_qaudh"]
 

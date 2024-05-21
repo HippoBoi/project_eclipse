@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cdpmid63nvs2r"]
 
-[ext_resource type="Script" path="res://enemyTest.gd" id="1_fcrv8"]
+[ext_resource type="Script" path="res://Assets/Scenes/enemyTest.gd" id="1_fcrv8"]
 [ext_resource type="PackedScene" uid="uid://c0hflwf0fyk6a" path="res://Assets/Scenes/health_points.tscn" id="2_4vx24"]
 [ext_resource type="Texture2D" uid="uid://b1mkwa6wys0n" path="res://Assets/Textures/rock_2_n.png" id="4_4mr2j"]
 [ext_resource type="PackedScene" uid="uid://blovi4qel8qwj" path="res://Assets/Scenes/NPCs/cralerModel.tscn" id="4_wny2b"]
