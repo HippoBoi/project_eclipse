@@ -1068,7 +1068,7 @@ transform = Transform3D(-1, 5.96046e-08, 0, -5.96046e-08, -1, 0, 0, 0, 1, -49.17
 waterInstance = NodePath("../Water")
 
 [node name="Stalactite08" parent="greatCave/waterSection" node_paths=PackedStringArray("waterInstance") instance=ExtResource("14_c2kmq")]
-transform = Transform3D(-1, 5.96046e-08, 0, -5.96046e-08, -1, 0, 0, 0, 1, -53.6433, 14.8657, -103.207)
+transform = Transform3D(-0.274899, 1.63853e-08, 0.961473, -5.96046e-08, -1, 0, 0.961473, -5.73082e-08, 0.274899, -53.6433, 14.8657, -103.207)
 waterInstance = NodePath("../Water")
 
 [node name="Stalactite09" parent="greatCave/waterSection" node_paths=PackedStringArray("waterInstance") instance=ExtResource("14_c2kmq")]

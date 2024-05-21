@@ -10,7 +10,7 @@ next_pass = ExtResource("4_xgb1x")
 albedo_texture = ExtResource("3_7dpi1")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qbhpi"]
-size = Vector3(1.30763, 3.07891, 1.34748)
+size = Vector3(1.93616, 3.62539, 2.03031)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iiypv"]
 size = Vector3(2.2141, 1.31769, 2.29613)
@@ -24,7 +24,7 @@ script = ExtResource("1_n1du0")
 surface_material_override/0 = SubResource("StandardMaterial3D_k7nul")
 
 [node name="lowerCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.166838, 2.83725, -0.00118306)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0891351, 2.56401, -0.00995284)
 shape = SubResource("BoxShape3D_qbhpi")
 
 [node name="upperCollision" type="CollisionShape3D" parent="."]
