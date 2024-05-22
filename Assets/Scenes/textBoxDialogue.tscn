@@ -1,0 +1,100 @@
+[gd_scene load_steps=5 format=3 uid="uid://v2h4rbnsngao"]
+
+[ext_resource type="Texture2D" uid="uid://c63hkqj177aom" path="res://Assets/Models/Rock Models/rock-7_rock.png" id="2_5ptb2"]
+[ext_resource type="FontFile" uid="uid://cjr63v44rd26b" path="res://Assets/Plaza Regular.ttf" id="3_kjxas"]
+
+[sub_resource type="GDScript" id="GDScript_qsut5"]
+script/source = "extends MarginContainer
+
+@onready var label = $MarginContainer/Label;
+@onready var timer = $letterDisplayTimer;
+
+const maxWidth = 512;
+
+var text = \"\";
+var letterIndex = 0;
+var letterTime = 0.0025;
+var spaceTime = 0.05;
+var puntuactionTime = 0.1;
+var periodTime = 0.15;
+
+signal finishedDisplaying;
+
+func createTextBox(textToDisplay: String):
+	text = textToDisplay;
+	label.text = textToDisplay;
+	
+	await resized;
+	
+	custom_minimum_size.x = min(size.x, maxWidth);
+	if (size.x > maxWidth):
+		label.autowrap_mode = TextServer.AUTOWRAP_WORD;
+		await resized; # x resize
+		await resized; # y resize
+		
+		custom_minimum_size.y = size.y;
+	global_position.x -= size.x / 2;
+	global_position.y -= size.y / 2;
+	
+	label.text = \"\";
+	displayLetter();
+
+func displayLetter():
+	label.text += text[letterIndex]
+	letterIndex += 1;
+	if (letterIndex >= text.length()):
+		finishedDisplaying.emit();
+		return;
+	
+	match text[letterIndex]:
+		\"!\", \",\", \"?\":
+			timer.start(puntuactionTime);
+		\".\":
+			timer.start(periodTime);
+		\" \":
+			timer.start(spaceTime);
+		_:
+			timer.start(letterTime);
+
+
+func _on_letter_display_timer_timeout():
+	displayLetter();
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_xkfkx"]
+font = ExtResource("3_kjxas")
+font_size = 24
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 3
+shadow_color = Color(0.145098, 0.0156863, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[node name="textBoxTest" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = SubResource("GDScript_qsut5")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+modulate = Color(0.462745, 0.113725, 0, 0.529412)
+layout_mode = 2
+texture = ExtResource("2_5ptb2")
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.658824, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_kjxas")
+label_settings = SubResource("LabelSettings_xkfkx")
+
+[node name="letterDisplayTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="letterDisplayTimer" to="." method="_on_letter_display_timer_timeout"]

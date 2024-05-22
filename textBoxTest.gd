@@ -8,7 +8,7 @@ const maxWidth = 256;
 var text = "";
 var letterIndex = 0;
 var letterTime = 0.001;
-var spaceTime = 0.03;
+var spaceTime = 0.02;
 var puntuactionTime = 0.05;
 var periodTime = 0.1;
 

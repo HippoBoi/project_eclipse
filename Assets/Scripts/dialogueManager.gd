@@ -1,6 +1,7 @@
 extends Node
 
 @onready var textBoxScene = preload("res://Assets/Scenes/textBoxTest.tscn");
+@onready var textBoxDialogueScene = preload("res://Assets/Scenes/textBoxDialogue.tscn");
 
 var dialogueLines: Array[String] = [];
 var currentLineIndex = 0;
@@ -29,7 +30,10 @@ func startDialogue(pos: Vector2, lines: Array[String], type: String = "", pause:
 	
 func showTextbox():
 	get_tree().call_group("Player", "scanDialogue", "start", pauseMovement);
-	textBox = textBoxScene.instantiate();
+	if (curDialogueType == "scanner"):
+		textBox = textBoxScene.instantiate();
+	else:
+		textBox = textBoxDialogueScene.instantiate();
 	textBox.finishedDisplaying.connect(onTextBoxFinishedDisplaying);
 	get_tree().root.add_child(textBox);
 	textBox.global_position = textBoxPosition;
